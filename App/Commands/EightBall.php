@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Exception;
 
@@ -70,7 +71,7 @@ class EightBall extends AbstractCommand implements CommandInterface
         $memberList = [];
 
         foreach ($members as $member) {
-            if ($member->user->id !== '814543511462477834') {
+            if ($member->user->id !== Env::get('BOT_USER_ID')) {
                 $memberList[] = $member->user->id;
             }
         }

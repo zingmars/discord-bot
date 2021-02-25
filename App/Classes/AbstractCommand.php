@@ -44,22 +44,30 @@ abstract class AbstractCommand implements CommandInterface
     }
 
     /**
-     * @param $icon
+     * @param string $icon
      * @return ExtendedPromiseInterface
      */
-    protected function react($icon): ExtendedPromiseInterface
+    protected function react(string $icon): ExtendedPromiseInterface
     {
         return $this->message->react($icon);
     }
 
     /**
-     * @param $message
+     * @param string $message
+     * @param Embed|null $embed
      * @return ExtendedPromiseInterface
      * @throws Exception
      */
-    protected function reply($message): ExtendedPromiseInterface
+    protected function reply(string $message, ?Embed $embed = null): ExtendedPromiseInterface
     {
-        return $this->message->reply($message);
+        $reference = [
+            'message_id' => $this->message->id,
+            'channel_id' => $this->message->channel->id,
+            'guild_id' => $this->message->channel->guild->id,
+            'fail_if_not_exists' => false,
+        ];
+
+        return $this->message->channel->sendMessage($message, false, $embed, false, $reference);
     }
 
     /**
@@ -70,5 +78,16 @@ abstract class AbstractCommand implements CommandInterface
     protected function sendEmbed(Embed $embed): ExtendedPromiseInterface
     {
         return $this->message->channel->sendEmbed($embed);
+    }
+
+    /**
+     * @param string $message
+     * @param Embed|null $embed
+     * @return ExtendedPromiseInterface
+     * @throws Exception
+     */
+    protected function channelMessage(string $message, ?Embed $embed = null): ExtendedPromiseInterface
+    {
+        return $this->message->channel->sendMessage($message, false, $embed);
     }
 }
