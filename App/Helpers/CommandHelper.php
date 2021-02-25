@@ -6,6 +6,7 @@ class CommandHelper
 {
     private const ALIASES = [
         '\\App\\Commands\\Bj' => '\\App\\Commands\\Blackjack',
+        '\\App\\Commands\\8ball' => '\\App\\Commands\\Eightball',
     ];
 
     public static function getClassName(string $className): string

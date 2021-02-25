@@ -15,6 +15,11 @@ class Blackjack implements CommandInterface
         $embed = new Embed($discord);
         $embed->setType(Embed::TYPE_RICH);
         $embed->setTitle('Blackjack');
+        $embed->setDescription('Dealer: ♠️ 10 ♠️ A
+        You: ♥️ 3 ♠️ 1 
+        
+        Dealer blackjack. Uzsūc silto.');
+
 
         $message->channel->sendEmbed($embed);
     }
