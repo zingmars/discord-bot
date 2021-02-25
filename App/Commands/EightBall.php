@@ -56,9 +56,9 @@ class EightBall extends AbstractCommand implements CommandInterface
             $response = 'jāprasa <@%s>';
 
             $this->reply(sprintf($response, $this->getRandomMember()));
+        } else {
+            $this->reply($response);
         }
-
-        $this->reply($response);
     }
 
     /**
