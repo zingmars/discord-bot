@@ -8,7 +8,7 @@ use Discord\Parts\Channel\Message;
 use App\Classes\AbstractCommand;
 use App\Interfaces\CommandInterface;
 
-class Nsfw extends AbstractCommand implements CommandInterface
+class NSFW extends AbstractCommand implements CommandInterface
 {
     /**
      * @return bool

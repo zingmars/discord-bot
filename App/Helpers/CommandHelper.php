@@ -2,14 +2,21 @@
 
 namespace App\Helpers;
 
+use App\Commands\Blackjack;
+use App\Commands\DirectMessage;
+use App\Commands\NSFW;
+use App\Commands\Test;
 use JetBrains\PhpStorm\Pure;
 
 class CommandHelper
 {
-    private const COMMAND_NAMESPACE = '\\App\\Commands\\';
-    private const ALIASES = [
-        'bj' => 'blackjack',
-        '8ball' => 'eightball',
+    private const COMMANDS = [
+        'bj' => Blackjack::class,
+        'blackjack' => Blackjack::class,
+        'dm' => DirectMessage::class,
+        'directmessage' => DirectMessage::class,
+        'nsfw' => NSFW::class,
+        'test' => Test::class,
     ];
 
     /**
@@ -20,12 +27,10 @@ class CommandHelper
     {
         $command = strtolower($command);
 
-        if (isset(self::ALIASES[$command])) {
-            $command = self::ALIASES[$command];
+        if (isset(self::COMMANDS[$command])) {
+            return self::COMMANDS[$command];
         }
 
-        $command = ucfirst(strtolower($command));
-
-        return self::COMMAND_NAMESPACE . $command;
+        return '';
     }
 }

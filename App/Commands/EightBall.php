@@ -6,7 +6,7 @@ use App\Classes\AbstractCommand;
 use App\Interfaces\CommandInterface;
 use Exception;
 
-class Eightball extends AbstractCommand implements CommandInterface
+class EightBall extends AbstractCommand implements CommandInterface
 {
     private array $responses = [
         [
