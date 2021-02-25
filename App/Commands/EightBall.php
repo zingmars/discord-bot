@@ -72,8 +72,14 @@ class EightBall extends AbstractCommand implements CommandInterface
 
         foreach ($members as $member) {
             if ($member->user->id !== Env::get('BOT_USER_ID')) {
-                $memberList[] = $member->user->id;
+                continue;
             }
+
+            if ($member->user->id === $this->message->author->id) {
+                continue;
+            }
+
+            $memberList[] = $member->user->id;
         }
 
         $randomMemberKey = rand(0, count($memberList));
