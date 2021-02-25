@@ -13,6 +13,8 @@ class Retard
         'uzēd fēci',
         'go commit self neck rope',
         'sūkā dirsu',
+        '【﻿ｌｅａｖｅ　ｔｈｅ　ｗｏｒｌｄ　ｂｅｈｉｎｄ　ｕ
+ｃｏｍｍｉｔ　ｎｅｃｋ】 https://www.amazon.de/100-nat%C3%BCrliche-Seile-Bootfahren-Kletterseil/dp/B01GL2CUF8/ref=sr_1_7?ie=UTF8&qid=1544115457&sr=8-7',
     ];
 
     public static function getRandomMessage(): string

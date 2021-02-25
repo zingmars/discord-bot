@@ -3,7 +3,9 @@
 namespace App\Helpers;
 
 use App\Commands\Blackjack;
+use App\Commands\Credits;
 use App\Commands\DirectMessage;
+use App\Commands\EightBall;
 use App\Commands\NSFW;
 use App\Commands\Test;
 use JetBrains\PhpStorm\Pure;
@@ -17,6 +19,9 @@ class CommandHelper
         'directmessage' => DirectMessage::class,
         'nsfw' => NSFW::class,
         'test' => Test::class,
+        'credits' => Credits::class,
+        'respekcija' => Credits::class,
+        '8ball' => EightBall::class,
     ];
 
     /**

@@ -12,14 +12,10 @@ class EightBall extends AbstractCommand implements CommandInterface
         [
             'tu jau zini gang',
             'jā',
-            'nemīz',
             'jā, bet fonā mirgos',
         ],
         [
-            'daunis esi?',
             'nē',
-            'labāk sūkā dirsu',
-            'labāk palaizi oliņas',
         ],
         [
             'nez',
