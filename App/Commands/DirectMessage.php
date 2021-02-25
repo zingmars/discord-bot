@@ -12,7 +12,12 @@ class DirectMessage extends AbstractCommand implements CommandInterface
      */
     public function validate(): bool
     {
-        return true;
+        if ($this->authorIsOwner()) {
+            return true;
+        }
+
+        $this->react('🔐');
+        return false;
     }
 
 

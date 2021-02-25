@@ -13,7 +13,12 @@ class Test extends AbstractCommand
      */
     public function validate(): bool
     {
-        return $this->authorIsOwner();
+        if ($this->authorIsOwner()) {
+            return true;
+        }
+
+        $this->react('🔐');
+        return false;
     }
 
     /**

@@ -15,11 +15,11 @@ class Say extends AbstractCommand implements CommandInterface
      */
     public function validate(): bool
     {
-        if ($this->message->author->id === Env::get('BOT_OWNER_USER_ID')) {
+        if ($this->authorIsOwner()) {
             return true;
         }
 
-        $this->react('❌');
+        $this->react('🔐');
         return false;
     }
 
