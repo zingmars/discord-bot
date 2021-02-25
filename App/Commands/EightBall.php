@@ -71,11 +71,18 @@ class EightBall extends AbstractCommand implements CommandInterface
         $memberList = [];
 
         foreach ($members as $member) {
+            // ignore bot
             if ($member->user->id !== Env::get('BOT_USER_ID')) {
                 continue;
             }
 
+            // ignore author
             if ($member->user->id === $this->message->author->id) {
+                continue;
+            }
+
+            // ignore offline
+            if (is_null($member->client_status)) {
                 continue;
             }
 

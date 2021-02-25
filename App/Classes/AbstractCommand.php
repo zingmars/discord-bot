@@ -2,11 +2,13 @@
 
 namespace App\Classes;
 
+use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Discord\Discord;
 use Discord\Parts\Channel\Message;
 use Discord\Parts\Embed\Embed;
 use Exception;
+use JetBrains\PhpStorm\Pure;
 use React\Promise\ExtendedPromiseInterface;
 
 abstract class AbstractCommand implements CommandInterface
@@ -89,5 +91,17 @@ abstract class AbstractCommand implements CommandInterface
     protected function channelMessage(string $message, ?Embed $embed = null): ExtendedPromiseInterface
     {
         return $this->message->channel->sendMessage($message, false, $embed);
+    }
+
+    /**
+     * @return bool
+     */
+    #[Pure] protected function authorIsOwner(): bool
+    {
+        if ($this->message->author->id === Env::get('BOT_OWNER_USER_ID')) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Env;
 use Exception;
 
 class Test extends AbstractCommand
@@ -12,7 +13,7 @@ class Test extends AbstractCommand
      */
     public function validate(): bool
     {
-        return true;
+        return $this->authorIsOwner();
     }
 
     /**
