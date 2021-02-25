@@ -1,0 +1,17 @@
+{
+  "require": {
+    "team-reflex/discord-php": "dev-master",
+    "vlucas/phpdotenv": "^5.3"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@github.com:discord-php/DiscordPHP.git"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  }
+}
