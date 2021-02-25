@@ -14,6 +14,7 @@ class Retard
         'uzēd fēci',
         'go commit self neck rope',
         'tāda komanda neeksistē',
+        'sūkā dirsu',
     ];
 
     public static function getRandomMessage(): string
