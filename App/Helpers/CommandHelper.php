@@ -2,21 +2,30 @@
 
 namespace App\Helpers;
 
+use JetBrains\PhpStorm\Pure;
+
 class CommandHelper
 {
+    private const COMMAND_NAMESPACE = '\\App\\Commands\\';
     private const ALIASES = [
-        '\\App\\Commands\\Bj' => '\\App\\Commands\\Blackjack',
-        '\\App\\Commands\\8ball' => '\\App\\Commands\\Eightball',
+        'bj' => 'blackjack',
+        '8ball' => 'eightball',
     ];
 
-    public static function getClassName(string $className): string
+    /**
+     * @param string $command
+     * @return string
+     */
+    #[Pure] public static function getClassName(string $command): string
     {
-        $className = '\\App\\Commands\\'.ucfirst($className);
+        $command = strtolower($command);
 
-        if (isset(self::ALIASES[$className])) {
-            return self::ALIASES[$className];
+        if (isset(self::ALIASES[$command])) {
+            $command = self::ALIASES[$command];
         }
 
-        return $className;
+        $command = ucfirst(strtolower($command));
+
+        return self::COMMAND_NAMESPACE . $command;
     }
 }
