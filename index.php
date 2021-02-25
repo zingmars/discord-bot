@@ -4,15 +4,16 @@ include __DIR__ . '/vendor/autoload.php';
 
 use App\Fuckboy;
 use App\Helpers\Env;
-use Discord\DiscordCommandClient;
+use Discord\Discord;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$discord = new DiscordCommandClient(
+$discord = new Discord(
     [
         'token' => Env::get('DISCORD_BOT_TOKEN'),
+        'loadAllMembers' => true,
     ]
 );
 

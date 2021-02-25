@@ -19,7 +19,7 @@ class Test extends AbstractCommand
     public function __construct(string $commandName, array $arguments, Message $message, Discord $discord)
     {
         $reply = 'Invoked Command %s (%s). Arguments: %s';
-        $reply = sprintf($reply,'test', self::class, implode(' ', $arguments));
+        $reply = sprintf($reply, 'test', self::class, implode(' ', $arguments));
         $message->reply($reply);
     }
 }
