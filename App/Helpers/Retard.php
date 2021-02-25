@@ -10,6 +10,10 @@ class Retard
         'sen sists neesi?',
         'rakstīt iemācies',
         'pn kys',
+        'pis sūdu',
+        'uzēd fēci',
+        'go commit self neck rope',
+        'tāda komanda neeksistē',
     ];
 
     public static function getRandomMessage(): string
