@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Classes\Command;
 use App\Helpers\CommandHelper;
 use App\Helpers\Log;
 use App\Helpers\Retard;
@@ -52,12 +53,12 @@ class Message
         $logMessage = 'Received a command from %s: %s';
         $commandClass = CommandHelper::getClassName($commandName);
 
-        array_shift($arguments);
-
         if (class_exists($commandClass)) {
-            new $commandClass($commandName, $arguments, $this->message, $this->discord);
+            $command = new Command($this->discord, $this->message, $arguments);
+            new $commandClass($command);
         } else {
             $this->message->reply(Retard::getRandomMessage());
+            $this->message->react('❌');
         }
 
         Log::console(sprintf($logMessage, $this->message->author->username, $commandName, implode(' ', $arguments)));

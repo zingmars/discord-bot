@@ -2,25 +2,36 @@
 
 namespace App\Commands;
 
+use App\Classes\AbstractCommand;
 use App\Interfaces\CommandInterface;
-use Discord\Discord;
-use Discord\Parts\Channel\Message;
 use Discord\Parts\Embed\Embed;
+use Exception;
 
-class Blackjack implements CommandInterface
+class Blackjack extends AbstractCommand implements CommandInterface
 {
-
-    public function __construct(string $commandName, array $arguments, Message $message, Discord $discord)
+    /**
+     * @return bool
+     */
+    public function validate(): bool
     {
-        $embed = new Embed($discord);
+        return true;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function execute(): void
+    {
+        $embed = new Embed($this->discord);
         $embed->setType(Embed::TYPE_RICH);
         $embed->setTitle('Blackjack');
-        $embed->setDescription('Dealer: ♠️ 10 ♠️ A
+        $embed->setDescription(
+            'Dealer: ♠️ 10 ♠️ A
         You: ♥️ 3 ♠️ 1 
         
-        Dealer blackjack. Uzsūc silto.');
+        Dealer blackjack. Uzsūc silto.'
+        );
 
-
-        $message->channel->sendEmbed($embed);
+        $this->sendEmbed($embed);
     }
 }

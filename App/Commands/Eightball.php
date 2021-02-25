@@ -2,14 +2,11 @@
 
 namespace App\Commands;
 
-use App\Helpers\Env;
-use App\Helpers\Retard;
+use App\Classes\AbstractCommand;
 use App\Interfaces\CommandInterface;
-use Discord\Discord;
-use Discord\Parts\Channel\Message;
-use Discord\Parts\Guild\Guild;
+use Exception;
 
-class Eightball implements CommandInterface
+class Eightball extends AbstractCommand implements CommandInterface
 {
     private array $responses = [
         [
@@ -33,31 +30,56 @@ class Eightball implements CommandInterface
         ]
     ];
 
-    public function __construct(string $commandName, array $arguments, Message $message, Discord $discord)
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function validate(): bool
     {
-        if (empty($arguments)) {
-            $message->reply(Retard::getRandomMessage());
-        } else {
-            $responseType = rand(0, count($this->responses) - 1);
-            $responseKey = rand(0, count($this->responses[$responseType]) - 1);
-
-            $response = $this->responses[$responseType][$responseKey];
-
-            if ($response === '##RANDOMMEMBER') {
-                $members = $message->channel->guild->members;
-                $memberList = [];
-
-                foreach ($members as $member) {
-                    $memberList[] = $member->user->id;
-                }
-
-                $randomMemberKey = rand(0, count($memberList));
-                $randomMember = '<@'.$memberList[$randomMemberKey].'>';
-
-                $response = 'jāprasa ' . $randomMember;
-            }
-
-            $message->reply($response);
+        if (empty($this->arguments)) {
+            $reply = 'syntax: .%s [message]';
+            $this->reply(sprintf($reply, $this->name));
+            $this->react('❌');
+            return false;
         }
+
+        return true;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function execute(): void
+    {
+        $responseType = rand(0, count($this->responses) - 1);
+        $responseKey = rand(0, count($this->responses[$responseType]) - 1);
+
+        $response = $this->responses[$responseType][$responseKey];
+
+        if ($response === '##RANDOMMEMBER') {
+            $response = 'jāprasa <@%s>';
+
+            $this->reply(sprintf($response, $this->getRandomMember()));
+        }
+
+        $this->reply($response);
+    }
+
+    /**
+     * @return string
+     */
+    private function getRandomMember(): string
+    {
+        $members = $this->message->channel->guild->members;
+        $memberList = [];
+
+        foreach ($members as $member) {
+            if ($member->user->id !== '814543511462477834') {
+                $memberList[] = $member->user->id;
+            }
+        }
+
+        $randomMemberKey = rand(0, count($memberList));
+        return $memberList[$randomMemberKey];
     }
 }

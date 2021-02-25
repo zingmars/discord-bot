@@ -2,14 +2,19 @@
 
 namespace App\Commands;
 
+use App\Classes\Command;
 use Discord\Discord;
 use Discord\Parts\Channel\Message;
+use App\Classes\AbstractCommand;
+use App\Interfaces\CommandInterface;
 
-class Nsfw implements \App\Interfaces\CommandInterface
+class Nsfw extends AbstractCommand implements CommandInterface
 {
-
-    public function __construct(string $commandName, array $arguments, Message $message, Discord $discord)
+    /**
+     * @return bool
+     */
+    public function validate(): bool
     {
-        $message->reply('not yet implemented');
+        return true;
     }
 }

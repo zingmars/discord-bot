@@ -2,10 +2,13 @@
 
 namespace App\Interfaces;
 
-use Discord\Discord;
-use Discord\Parts\Channel\Message;
+use App\Classes\Command;
 
 interface CommandInterface
 {
-    public function __construct(string $commandName, array $arguments, Message $message, Discord $discord);
+    public function __construct(Command $command);
+
+    public function validate(): bool;
+
+    public function execute(): void;
 }
