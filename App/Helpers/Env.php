@@ -2,9 +2,11 @@
 
 namespace App\Helpers;
 
+use JetBrains\PhpStorm\Pure;
+
 class Env
 {
-    public static function get(string $key): string
+    #[Pure] public static function get(string $key): string
     {
         if (isset($_ENV[$key])) {
             return $_ENV[$key];
