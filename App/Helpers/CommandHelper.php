@@ -7,10 +7,11 @@ use App\Commands\Credits;
 use App\Commands\DirectMessage;
 use App\Commands\EightBall;
 use App\Commands\NSFW;
-use App\Commands\Options;
 use App\Commands\Say;
+use App\Commands\Stonks\Stonk;
 use App\Commands\Test;
 use JetBrains\PhpStorm\Pure;
+use App\Commands\Stonks\Options;
 
 class CommandHelper
 {
@@ -26,6 +27,7 @@ class CommandHelper
         '8ball' => EightBall::class,
         'say' => Say::class,
         'options' => Options::class,
+        'stonk' => Stonk::class,
     ];
 
     /**

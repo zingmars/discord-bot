@@ -32,7 +32,11 @@ abstract class AbstractCommand implements CommandInterface
         $this->arguments = $command->arguments;
 
         if ($this->validate()) {
-            $this->execute();
+            try {
+                $this->execute();
+            } catch (Exception $e) {
+                $this->react('🛠️');
+            }
         }
     }
 

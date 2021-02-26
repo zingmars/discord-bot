@@ -1649,7 +1649,7 @@
             "dist": {
                 "type": "path",
                 "url": "/Volumes/Development/Stonks/MarketData",
-                "reference": "6f7505fed5dcc7ecbb5420568a82b1634181d7dd"
+                "reference": "ee5b8d9fac19586b305e8ef7180a8ab8ba57b7e5"
             },
             "require": {
                 "ext-json": "*",
