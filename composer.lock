@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16782965c01dfae27ce6f98825b4cf44",
+    "content-hash": "47d369ec7d5e5552f877dc4bf3403b0d",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1649,7 +1649,7 @@
             "dist": {
                 "type": "path",
                 "url": "/Volumes/Development/Stonks/MarketData",
-                "reference": "ee5b8d9fac19586b305e8ef7180a8ab8ba57b7e5"
+                "reference": "4f74f4c494581456d5dcc914eb101d5511ecb215"
             },
             "require": {
                 "ext-json": "*",
@@ -2563,13 +2563,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/discord-php/DiscordPHP.git",
-                "reference": "d5a122dd8ff05c516d8045414215bb66a0bc2ece"
+                "url": "https://github.com/svengjohnson/DiscordPHP.git",
+                "reference": "7ca3d1a0b7c926574d0b45c7f07a7be483ea5a7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/discord-php/DiscordPHP/zipball/d5a122dd8ff05c516d8045414215bb66a0bc2ece",
-                "reference": "d5a122dd8ff05c516d8045414215bb66a0bc2ece",
+                "url": "https://api.github.com/repos/svengjohnson/DiscordPHP/zipball/7ca3d1a0b7c926574d0b45c7f07a7be483ea5a7e",
+                "reference": "7ca3d1a0b7c926574d0b45c7f07a7be483ea5a7e",
                 "shasum": ""
             },
             "require": {
@@ -2631,10 +2631,9 @@
             ],
             "description": "An unofficial API to interact with the voice and text service Discord.",
             "support": {
-                "source": "https://github.com/discord-php/DiscordPHP/tree/master",
-                "issues": "https://github.com/discord-php/DiscordPHP/issues"
+                "source": "https://github.com/svengjohnson/DiscordPHP/tree/master"
             },
-            "time": "2021-02-20T23:32:43+00:00"
+            "time": "2021-02-25T19:05:33+00:00"
         },
         {
             "name": "trafficcophp/bytebuffer",

@@ -8,7 +8,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url":  "git@github.com:discord-php/DiscordPHP.git"
+      "url":  "git@github.com:svengjohnson/DiscordPHP.git"
     },
     {
       "type": "path",
