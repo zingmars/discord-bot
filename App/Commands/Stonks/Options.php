@@ -13,6 +13,16 @@ use SJohnson\MarketData\Objects\OptionDates;
 
 class Options extends AbstractCommand implements CommandInterface
 {
+    private const ENCOURAGING_MESSAGES = [
+        'It literally cannot go tits up',
+        'YOLO TSLA $1337 Calls EXPIRING RIGHT FUCKING NOW',
+        'I like the stock.',
+        'You should look at `.options SPY Call 2021-04-16 420`',
+        'There\'s a non-zero chance that you might get cucked by this position',
+        'HODL!',
+        'Send it, motherfucker',
+    ];
+
     /**
      * @return bool
      */
@@ -62,7 +72,7 @@ class Options extends AbstractCommand implements CommandInterface
 
             $chain = $ticker->getOptionsChain($expiry);
             $embed = $this->optionCardEmbed($chain, $side, $strike);
-            $this->reply('Blaze this shit, negro.', $embed);
+            $this->reply($this->getRandomEncouragingMessage(), $embed);
         } else {
             $chain = $ticker->getOptionsChain($expiry);
             $embed = $this->optionChainEmbed($ticker, $chain, $expiry, $side);
@@ -86,10 +96,10 @@ class Options extends AbstractCommand implements CommandInterface
             if ($option->strike === $strike) {
                 $embed->setTitle($option->description);
                 $description = 'Symbol: ' . $option->symbol . PHP_EOL;
-                $description .= 'Open Interest: ' . $option->openInterest . PHP_EOL;
-                $description .= 'Bid: ' . (float)$option->bid . PHP_EOL;
-                $description .= 'Ask: ' . (float)$option->ask . PHP_EOL;
+                $description .= 'Bid: $' . (float)$option->bid . PHP_EOL;
+                $description .= 'Ask: $' . (float)$option->ask . PHP_EOL;
                 $description .= 'Volume: ' . $option->volume . PHP_EOL;
+                $description .= 'Open Interest: ' . $option->openInterest . PHP_EOL;
                 $embed->setDescription($description);
 
                 break;
@@ -109,8 +119,8 @@ class Options extends AbstractCommand implements CommandInterface
     private function optionChainEmbed(Ticker $ticker, OptionChain $optionChain, string $expiry, string $side): Embed
     {
         $embed = new Embed($this->discord);
-        $embed->setTitle($ticker->ticker . ' ' . ucfirst($side) . 's');
-        $description = 'Strikes: ';
+        $embed->setTitle($ticker->ticker . ' ' . ucfirst($side) . ' Option Strike Prices');
+        $description = '';
 
         foreach ($optionChain->$side as $option) {
             $description .= '$' . $option->strike . ' ';
@@ -138,5 +148,13 @@ class Options extends AbstractCommand implements CommandInterface
         $embed->setDescription($description);
 
         return $embed;
+    }
+
+    /**
+     * @return string
+     */
+    private function getRandomEncouragingMessage(): string
+    {
+        return self::ENCOURAGING_MESSAGES[rand(0, count(self::ENCOURAGING_MESSAGES)) - 1];
     }
 }

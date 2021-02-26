@@ -26,6 +26,7 @@ class CommandHelper
         'respekcija' => Credits::class,
         '8ball' => EightBall::class,
         'say' => Say::class,
+        'option' => Options::class,
         'options' => Options::class,
         'stonk' => Stonk::class,
     ];
