@@ -7,6 +7,7 @@ use App\Commands\Credits;
 use App\Commands\DirectMessage;
 use App\Commands\EightBall;
 use App\Commands\NSFW;
+use App\Commands\Options;
 use App\Commands\Say;
 use App\Commands\Test;
 use JetBrains\PhpStorm\Pure;
@@ -24,6 +25,7 @@ class CommandHelper
         'respekcija' => Credits::class,
         '8ball' => EightBall::class,
         'say' => Say::class,
+        'options' => Options::class,
     ];
 
     /**
