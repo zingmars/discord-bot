@@ -21,6 +21,8 @@ class Options extends AbstractCommand implements CommandInterface
         'There\'s a non-zero chance that you might get cucked by this position',
         'HODL!',
         'Send it, motherfucker',
+        'Fuck yeah spread it',
+        'Diamond hands, motherfucker',
     ];
 
     /**
