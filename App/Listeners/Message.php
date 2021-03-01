@@ -8,22 +8,25 @@ use App\Helpers\Log;
 use App\Helpers\Retard;
 use Discord\Discord;
 use \Discord\Parts\Channel\Message as DiscordMessage;
+use Doctrine\ORM\EntityManager;
 use Exception;
 
 class Message
 {
     private DiscordMessage $message;
     private Discord $discord;
+    private EntityManager $entityManager;
 
     /**
      * @param Discord $discord
      * @param DiscordMessage $message
      * @throws Exception
      */
-    public function __construct(Discord $discord, DiscordMessage $message)
+    public function __construct(Discord $discord, EntityManager $entityManager, DiscordMessage $message)
     {
         $this->discord = $discord;
         $this->message = $message;
+        $this->entityManager = $entityManager;
 
         $logMessage = 'Received a message from %s: %s';
         Log::console(sprintf($logMessage, $message->author->username, $message->content));
@@ -54,7 +57,7 @@ class Message
         $commandClass = CommandHelper::getClassName($commandName);
 
         if (class_exists($commandClass)) {
-            $command = new Command($this->discord, $this->message, $arguments);
+            $command = new Command($this->discord, $this->entityManager, $this->message, $arguments);
             new $commandClass($command);
         } else {
             $this->message->reply(Retard::getRandomMessage());

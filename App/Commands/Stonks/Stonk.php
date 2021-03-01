@@ -25,7 +25,7 @@ class Stonk extends AbstractStonkCommand implements CommandInterface
     {
         // Set ticker. If no ticker - error message
         if (isset($this->arguments[0])) {
-            $ticker = new Ticker($this->arguments[0]);
+            $ticker = new Ticker($this->arguments[0], $this->tradierToken());
             $embed = $this->tickerEmbed($ticker);
             $this->reply('Heres ur stonk fam.', $embed);
         } else {

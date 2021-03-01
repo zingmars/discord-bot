@@ -10,6 +10,7 @@ use App\Commands\NSFW;
 use App\Commands\Say;
 use App\Commands\Stonks\Stonk;
 use App\Commands\Test;
+use App\Commands\UserConfig;
 use JetBrains\PhpStorm\Pure;
 use App\Commands\Stonks\Options;
 
@@ -29,6 +30,7 @@ class CommandHelper
         'option' => Options::class,
         'options' => Options::class,
         'stonk' => Stonk::class,
+        'userconfig' => UserConfig::class,
     ];
 
     /**

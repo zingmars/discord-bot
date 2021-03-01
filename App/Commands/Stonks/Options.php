@@ -41,7 +41,7 @@ class Options extends AbstractStonkCommand implements CommandInterface
     {
         // Set ticker. If no ticker - error message
         if (isset($this->arguments[0])) {
-            $ticker = new Ticker($this->arguments[0]);
+            $ticker = new Ticker($this->arguments[0], $this->tradierToken());
         } else {
             $this->reply('Syntax: ' . $this->name . ' [ticker] [side (call/put)] [expiry i.e. 2021-04-16] [strike]');
             return;

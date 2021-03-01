@@ -7,17 +7,19 @@ use App\Interfaces\CommandInterface;
 use Discord\Discord;
 use Discord\Parts\Channel\Message;
 use Discord\Parts\Embed\Embed;
+use Doctrine\ORM\EntityManager;
 use Exception;
 use JetBrains\PhpStorm\Pure;
 use React\Promise\ExtendedPromiseInterface;
 
 abstract class AbstractCommand implements CommandInterface
 {
-    protected Command $command;
-    protected Message $message;
-    protected Discord $discord;
-    protected array $arguments;
-    protected string $name;
+    public Command $command;
+    public Message $message;
+    public Discord $discord;
+    public EntityManager $entityManager;
+    public array $arguments;
+    public string $name;
 
     /**
      * @param Command $command
@@ -30,6 +32,7 @@ abstract class AbstractCommand implements CommandInterface
         $this->discord = $command->discord;
         $this->name = $command->commandName;
         $this->arguments = $command->arguments;
+        $this->entityManager = $command->entityManager;
 
         if ($this->validate()) {
             try {
@@ -66,14 +69,32 @@ abstract class AbstractCommand implements CommandInterface
      */
     protected function reply(string $message, ?Embed $embed = null): ExtendedPromiseInterface
     {
+        $channel = $this->message->channel;
+        $guildId = null;
+
+        if ($channel->guild) {
+            $guildId = $channel->guild->id;
+        }
+
         $reference = [
             'message_id' => $this->message->id,
-            'channel_id' => $this->message->channel->id,
-            'guild_id' => $this->message->channel->guild->id,
+            'channel_id' => $channel->id,
+            'guild_id' => $guildId,
             'fail_if_not_exists' => false,
         ];
 
         return $this->message->channel->sendMessage($message, false, $embed, false, $reference);
+    }
+
+    /**
+     * @param string $message
+     * @param Embed|null $embed
+     * @return ExtendedPromiseInterface
+     * @throws Exception
+     */
+    protected function sendDM(string $message, ?Embed $embed = null): ExtendedPromiseInterface
+    {
+        return $this->message->author->user->sendMessage($message, false, $embed);
     }
 
     /**
@@ -107,5 +128,13 @@ abstract class AbstractCommand implements CommandInterface
         }
 
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    #[Pure] protected function isPrivateMessage(): bool
+    {
+        return $this->message->channel->is_private;
     }
 }
