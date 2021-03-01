@@ -89,7 +89,7 @@ class EightBall extends AbstractCommand implements CommandInterface
             $memberList[] = $member->user->id;
         }
 
-        $randomMemberKey = rand(0, count($memberList));
+        $randomMemberKey = rand(0, count($memberList) - 1);
         return $memberList[$randomMemberKey];
     }
 }

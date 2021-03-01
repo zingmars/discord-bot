@@ -153,6 +153,6 @@ class Options extends AbstractStonkCommand implements CommandInterface
      */
     private function getRandomEncouragingMessage(): string
     {
-        return self::ENCOURAGING_MESSAGES[rand(0, count(self::ENCOURAGING_MESSAGES)) - 1];
+        return (string)self::ENCOURAGING_MESSAGES[rand(0, count(self::ENCOURAGING_MESSAGES)) - 1];
     }
 }
