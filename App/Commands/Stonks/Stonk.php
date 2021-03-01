@@ -2,25 +2,20 @@
 
 namespace App\Commands\Stonks;
 
-use App\Classes\AbstractCommand;
+use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Discord\Parts\Embed\Embed;
 use Exception;
 use SJohnson\MarketData\Classes\Ticker;
 
-class Stonk extends AbstractCommand implements CommandInterface
+class Stonk extends AbstractStonkCommand implements CommandInterface
 {
     /**
      * @return bool
      */
     public function validate(): bool
     {
-        if (!$this->authorIsOwner()) {
-            $this->react('🔐');
-            return false;
-        }
-
-        return true;
+        return parent::validate();
     }
 
     /**
@@ -51,11 +46,11 @@ class Stonk extends AbstractCommand implements CommandInterface
         $embed = new Embed($this->discord);
         $embed->setTitle($fundamentals->description);
         $description = 'Symbol: ' . $fundamentals->symbol . PHP_EOL;
-        $description .= 'Last Price: $' . $fundamentals->last . PHP_EOL;
-        $description .= 'Open: $' . $fundamentals->open . '      Close: $' . $fundamentals->close . PHP_EOL;
-        $description .= 'Low: $' . $fundamentals->low . '      High: $' . $fundamentals->high . PHP_EOL;
-        $description .= '52wk Low: $' . $fundamentals->yearlow . '      52wk High: $' . $fundamentals->yearhigh . PHP_EOL;
-        $description .= 'Volume: ' . $fundamentals->volume . '      Average: ' . $fundamentals->averageVolume . PHP_EOL;
+        $description .= 'Last Price: $' . (float)$fundamentals->last . PHP_EOL;
+        $description .= 'Open: $' . (float)$fundamentals->open . '      Close: $' . (float)$fundamentals->close . PHP_EOL;
+        $description .= 'Low: $' . (float)$fundamentals->low . '      High: $' . (float)$fundamentals->high . PHP_EOL;
+        $description .= '52wk Low: $' . (float)$fundamentals->yearlow . '      52wk High: $' . (float)$fundamentals->yearhigh . PHP_EOL;
+        $description .= 'Volume: ' . (int)$fundamentals->volume . '      Average: ' . (int)$fundamentals->averageVolume . PHP_EOL;
 
         $embed->setDescription($description);
 

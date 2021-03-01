@@ -3,6 +3,7 @@
 namespace App\Commands\Stonks;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Discord\Parts\Embed\Embed;
 use Exception;
@@ -11,7 +12,7 @@ use SJohnson\MarketData\Objects\Option;
 use SJohnson\MarketData\Objects\OptionChain;
 use SJohnson\MarketData\Objects\OptionDates;
 
-class Options extends AbstractCommand implements CommandInterface
+class Options extends AbstractStonkCommand implements CommandInterface
 {
     private const ENCOURAGING_MESSAGES = [
         'It literally cannot go tits up',
@@ -30,12 +31,7 @@ class Options extends AbstractCommand implements CommandInterface
      */
     public function validate(): bool
     {
-        if (!$this->authorIsOwner()) {
-            $this->react('🔐');
-            return false;
-        }
-
-        return true;
+        return parent::validate();
     }
 
     /**
