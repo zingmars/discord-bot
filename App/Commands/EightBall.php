@@ -13,7 +13,6 @@ class EightBall extends AbstractCommand implements CommandInterface
         [
             'tu jau zini gang',
             'jā',
-            'jā, bet fonā mirgos',
         ],
         [
             'nē',
@@ -72,7 +71,7 @@ class EightBall extends AbstractCommand implements CommandInterface
 
         foreach ($members as $member) {
             // ignore bot
-            if ($member->user->id !== Env::get('BOT_USER_ID')) {
+            if ($member->user->id === (int)Env::get('BOT_USER_ID')) {
                 continue;
             }
 

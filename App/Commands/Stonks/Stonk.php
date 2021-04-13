@@ -2,7 +2,6 @@
 
 namespace App\Commands\Stonks;
 
-use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Discord\Parts\Embed\Embed;
 use Exception;
@@ -44,7 +43,7 @@ class Stonk extends AbstractStonkCommand implements CommandInterface
         $fundamentals = $ticker->getFundamentals();
 
         $embed = new Embed($this->discord);
-        $embed->setTitle($fundamentals->description);
+        $embed->setTitle((string)$fundamentals->description);
         $description = 'Symbol: ' . $fundamentals->symbol . PHP_EOL;
         $description .= 'Last Price: $' . (float)$fundamentals->last . PHP_EOL;
         $description .= 'Open: $' . (float)$fundamentals->open . '      Close: $' . (float)$fundamentals->close . PHP_EOL;

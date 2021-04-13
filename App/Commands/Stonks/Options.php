@@ -69,7 +69,7 @@ class Options extends AbstractStonkCommand implements CommandInterface
             $strike = $this->arguments[3];
 
             $chain = $ticker->getOptionsChain($expiry);
-            $embed = $this->optionCardEmbed($chain, $side, $strike);
+            $embed = $this->optionCardEmbed($chain, $side, (float)$strike);
             $this->reply($this->getRandomEncouragingMessage(), $embed);
         } else {
             $chain = $ticker->getOptionsChain($expiry);

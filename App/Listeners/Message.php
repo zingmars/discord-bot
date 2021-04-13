@@ -19,6 +19,7 @@ class Message
 
     /**
      * @param Discord $discord
+     * @param EntityManager $entityManager
      * @param DiscordMessage $message
      * @throws Exception
      */
@@ -31,6 +32,18 @@ class Message
         $logMessage = 'Received a message from %s: %s';
         Log::console(sprintf($logMessage, $message->author->username, $message->content));
         $this->handleCommand();
+
+        if (str_starts_with($this->message->content, 'pls traps')) {
+            $this->message->reply('go commit self neck rope');
+        }
+
+        if (str_contains($this->message->content, 'https://cdn.discordapp.com/attachments/810884195516809238/829332905426812938/c82ef193241b16732d724ddac309698d.mp4')) {
+            $this->message->reply('debils esi?');
+        }
+
+        if ($this->message->author->id === '680134378860314633') {
+            #$this->message->delete();
+        }
     }
 
     /**
@@ -48,7 +61,7 @@ class Message
             return;
         }
 
-        $content = str_replace('.', '', $content);
+        $content = substr($content, 1);
         $arguments = explode(' ', $content);
 
         $commandName = $arguments[0];
@@ -60,7 +73,7 @@ class Message
             $command = new Command($this->discord, $this->entityManager, $this->message, $arguments);
             new $commandClass($command);
         } else {
-            $this->message->reply(Retard::getRandomMessage());
+            //$this->message->reply(Retard::getRandomMessage());
             $this->message->react('❌');
         }
 

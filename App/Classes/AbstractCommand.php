@@ -137,4 +137,12 @@ abstract class AbstractCommand implements CommandInterface
     {
         return $this->message->channel->is_private;
     }
+
+    /**
+     * @return int
+     */
+    protected function getAuthorId(): int
+    {
+        return $this->message->author->id;
+    }
 }

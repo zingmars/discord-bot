@@ -7,8 +7,12 @@ use Database\UserConfig;
 
 class Tradier
 {
-    public static function getKey(AbstractCommand $command): string
+    public static function getKey(AbstractCommand $command, bool $fromEnv = true): string
     {
+        if ($fromEnv) {
+            return self::getKeyFromEnv();
+        }
+
         $user = $command->message->author;
         $entityManager = $command->entityManager;
 
@@ -24,5 +28,10 @@ class Tradier
         }
 
         return '';
+    }
+
+    private static function getKeyFromEnv()
+    {
+        return Env::get('TRADIER_TOKEN');
     }
 }

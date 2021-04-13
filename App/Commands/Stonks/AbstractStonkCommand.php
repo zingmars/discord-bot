@@ -16,7 +16,7 @@ abstract class AbstractStonkCommand extends AbstractCommand implements CommandIn
      */
     #[Pure] protected function tradierToken(): string
     {
-        return Tradier::getKey($this);
+        return Tradier::getKey($this, true);
     }
 
     /**
@@ -27,6 +27,11 @@ abstract class AbstractStonkCommand extends AbstractCommand implements CommandIn
     {
         if (!$this->authorIsOwner() && false) {
             $this->react('🔐');
+            return false;
+        }
+
+        if ($this->isPrivateMessage()) {
+            $this->reply('neck yourself');
             return false;
         }
 
