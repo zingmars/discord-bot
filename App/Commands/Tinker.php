@@ -26,7 +26,11 @@ class Tinker extends AbstractCommand implements CommandInterface
         $command = implode(' ', $this->arguments);
         $evalResult = (string)eval($command);
 
-        $reply = '```%s%s%s```';
-        $this->reply(sprintf($reply, PHP_EOL, $evalResult, PHP_EOL));
+        if (strlen($evalResult)) {
+            $reply = '```%s%s%s```';
+            $this->reply(sprintf($reply, PHP_EOL, $evalResult, PHP_EOL));
+        }
+        
+        $this->react('✅');
     }
 }
