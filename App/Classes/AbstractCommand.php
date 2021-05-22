@@ -7,7 +7,6 @@ use App\Interfaces\CommandInterface;
 use Discord\Discord;
 use Discord\Parts\Channel\Message;
 use Discord\Parts\Embed\Embed;
-use Doctrine\ORM\EntityManager;
 use Exception;
 use JetBrains\PhpStorm\Pure;
 use React\Promise\ExtendedPromiseInterface;
@@ -17,7 +16,6 @@ abstract class AbstractCommand implements CommandInterface
     public Command $command;
     public Message $message;
     public Discord $discord;
-    public EntityManager $entityManager;
     public array $arguments;
     public string $name;
 
@@ -32,7 +30,6 @@ abstract class AbstractCommand implements CommandInterface
         $this->discord = $command->discord;
         $this->name = $command->commandName;
         $this->arguments = $command->arguments;
-        $this->entityManager = $command->entityManager;
 
         if ($this->validate()) {
             try {
