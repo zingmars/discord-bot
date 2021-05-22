@@ -20,6 +20,6 @@ class Ping extends AbstractCommand
      */
     public function execute(): void
     {
-        $this->reply(('PONG'));
+        $this->channelMessage('PONG');
     }
 }

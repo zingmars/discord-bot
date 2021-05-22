@@ -6,6 +6,7 @@ A slightly modified version of [this](https://github.com/svengjohnson/discord-bo
 ### Requirements
 
 * php 8.0
+* curl extension (php8.0-curl)
 * composer
 
 ### Setup
@@ -33,4 +34,4 @@ If you want to use docker `TODO`...
 ### Miscellaneous
 
 * You can add hardcoded replies in [App/Listeners/Message.php](./App/Listeners/Message.php).
-* To add new commands, create a php file in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php).
+* To add new commands, create a class that extends AbstractCommand in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php). Just look at other commands for examples.

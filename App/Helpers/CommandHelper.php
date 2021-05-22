@@ -6,8 +6,7 @@ use App\Commands\EightBall;
 use App\Commands\Help;
 use App\Commands\Ping;
 use App\Commands\Say;
-use App\Commands\Tinker;
-use App\Commands\UserConfig;
+use App\Commands\Fact;
 use JetBrains\PhpStorm\Pure;
 
 class CommandHelper
@@ -16,8 +15,8 @@ class CommandHelper
         'ping' => Ping::class,
         '8ball' => EightBall::class,
         'say' => Say::class,
-//        'userconfig' => UserConfig::class,
         'help' => Help::class,
+        'fact' => Fact::class,
     ];
 
     public const COMMANDS_DESCRIPTIONS = [
