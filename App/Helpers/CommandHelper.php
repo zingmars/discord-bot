@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Commands\ChristianInsult;
+use App\Commands\DadJoke;
 use App\Commands\EightBall;
 use App\Commands\FindIp;
 use App\Commands\FindPhone;
@@ -32,6 +33,7 @@ class CommandHelper
         'findip' => FindIp::class,
         'findphone' => FindPhone::class,
         'insult' => ChristianInsult::class,
+        'joke' => DadJoke::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -94,6 +96,12 @@ class CommandHelper
             'shortDescription' => 'Insult someone',
             'longDescription' => 'Insult someone',
             'syntax' => '[user tag]',
+        ],
+        DadJoke::class => [
+            'command' => 'joke',
+            'shortDescription' => 'Get a dad joke',
+            'longDescription' => 'Get a random joke',
+            'syntax' => '',
         ],
     ];
 
