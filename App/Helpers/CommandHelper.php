@@ -17,6 +17,7 @@ use App\Commands\Fact;
 use App\Commands\SpamGL;
 use App\Commands\SpamGLCount;
 use App\Commands\Weather;
+use App\Commands\WolframAlpha;
 use JetBrains\PhpStorm\Pure;
 
 class CommandHelper
@@ -34,6 +35,7 @@ class CommandHelper
         'findphone' => FindPhone::class,
         'insult' => ChristianInsult::class,
         'joke' => DadJoke::class,
+        'wa' => WolframAlpha::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -102,6 +104,12 @@ class CommandHelper
             'shortDescription' => 'Get a dad joke',
             'longDescription' => 'Get a random joke',
             'syntax' => '',
+        ],
+        WolframAlpha::class => [
+            'command' => 'wa',
+            'shortDescription' => 'Execute a query against WolframAlpha',
+            'longDescription' => 'Run query on WolframAlpha',
+            'syntax' => '[query]',
         ],
     ];
 

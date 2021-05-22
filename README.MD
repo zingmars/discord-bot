@@ -9,6 +9,7 @@ A lot of the plugins were ported from an older IRC bot [IRCLinkBot or TaiiwoBot]
 
 * php 8.0
 * curl extension (php8.0-curl)
+* xml extension (php8.0-xml)
 * composer
 
 ### Setup
@@ -38,4 +39,5 @@ If you want to use docker `TODO`...
 * You can add hardcoded replies in [App/Listeners/Message.php](./App/Listeners/Message.php).
 * To add new commands, create a class that extends AbstractCommand in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php). Just look at other commands for examples.
 * You can get OpenWeather API keys [here](https://home.openweathermap.org/api_keys) (account needed, free tier is available, although limited).
+* You can get WolframAlpha API keys [here](https://developer.wolframalpha.com/portal/myapps/).
 * SPAM_TARGET settings are for a joke, don't mind those.

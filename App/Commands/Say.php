@@ -3,7 +3,6 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
-use App\Helpers\Env;
 use App\Interfaces\CommandInterface;
 use Exception;
 

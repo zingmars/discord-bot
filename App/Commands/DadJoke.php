@@ -26,7 +26,7 @@ class DadJoke extends AbstractCommand
         $result = json_decode($output);
 
         if ($result->status !== 200) {
-            $this->reply("Could not get a joke :(");
+            $this->reply("No Jok.");
         } else {
             $this->reply($result->joke);
         }

@@ -4,7 +4,8 @@
     "vlucas/phpdotenv": "^5.3",
     "ext-json": "*",
     "doctrine/orm": "^2.8",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "ext-dom": "*"
   },
   "repositories": [
     {
