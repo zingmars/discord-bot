@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Commands\EightBall;
 use App\Commands\FindIp;
 use App\Commands\Help;
+use App\Commands\Lenny;
 use App\Commands\Ping;
 use App\Commands\ReallyFuckingLove;
 use App\Commands\Roll;
@@ -24,8 +25,11 @@ class CommandHelper
         'tfw' => Weather::class,
         'weather' => Weather::class,
         'roll' => Roll::class,
-        'rfl' => ReallyFuckingLove::class,
         'findip' => FindIp::class,
+
+        // These commands don't have help entries
+        'rfl' => ReallyFuckingLove::class,
+        'lenny' => Lenny::class
     ];
 
     public const COMMANDS_DESCRIPTIONS = [

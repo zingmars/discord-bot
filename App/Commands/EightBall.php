@@ -85,6 +85,7 @@ class EightBall extends AbstractCommand implements CommandInterface
             $memberList[] = $member->user->id;
         }
 
+        //TODO: Handle empty channels
         $randomMemberKey = rand(0, count($memberList) - 1);
         return $memberList[$randomMemberKey];
     }
