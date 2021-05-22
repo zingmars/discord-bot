@@ -19,9 +19,6 @@ class EightBall extends AbstractCommand implements CommandInterface
         ],
         [
             'nez',
-            '<:nez:810903050704912414>',
-            'jāprasa <@131877167549251584>',
-            'jāprasa <@221755442513051649>',
             '##RANDOMMEMBER'
         ]
     ];
@@ -33,8 +30,8 @@ class EightBall extends AbstractCommand implements CommandInterface
     public function validate(): bool
     {
         if (empty($this->arguments)) {
-            $reply = 'syntax: .%s [message]';
-            $this->reply(sprintf($reply, $this->name));
+            $reply = 'syntax: %s%s [message]';
+            $this->reply(sprintf($reply, Env::Get('COMMAND_PREFIX'), $this->name));
             $this->react('❌');
             return false;
         }
