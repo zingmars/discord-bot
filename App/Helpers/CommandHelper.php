@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Commands\ChristianInsult;
 use App\Commands\EightBall;
 use App\Commands\FindIp;
 use App\Commands\FindPhone;
@@ -30,6 +31,7 @@ class CommandHelper
         'roll' => Roll::class,
         'findip' => FindIp::class,
         'findphone' => FindPhone::class,
+        'insult' => ChristianInsult::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -86,6 +88,12 @@ class CommandHelper
             'shortDescription' => 'Lookup phone number\'s caller id',
             'longDescription' => 'Looks up a phone number to see if they have a caller id',
             'syntax' => '[phone number]',
+        ],
+        ChristianInsult::class => [
+            'command' => 'insult',
+            'shortDescription' => 'Insult someone',
+            'longDescription' => 'Insult someone',
+            'syntax' => '[user tag]',
         ],
     ];
 

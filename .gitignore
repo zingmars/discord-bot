@@ -4,4 +4,4 @@ vendor/
 composer.phar
 db.sqlite
 *.sw[a-p]
-Data/*
+Data/spam_plugin_data
