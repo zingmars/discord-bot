@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Commands\EightBall;
 use App\Commands\Help;
 use App\Commands\Ping;
+use App\Commands\Roll;
 use App\Commands\Say;
 use App\Commands\Fact;
 use App\Commands\Weather;
@@ -19,7 +20,8 @@ class CommandHelper
         'help' => Help::class,
         'fact' => Fact::class,
         'tfw' => Weather::class,
-        'weather' => Weather::class
+        'weather' => Weather::class,
+        'roll' => Roll::class,
     ];
 
     public const COMMANDS_DESCRIPTIONS = [
@@ -52,7 +54,13 @@ class CommandHelper
             'shortDescription' => 'Weather',
             'longDescription' => 'Checks weather in a given location',
             'syntax' => '[location]',
-        ]
+        ],
+        Roll::class => [
+            'command' => 'roll',
+            'shortDescription' => 'Roll',
+            'longDescription' => 'Rolls dice. Optionally the amount of dice and the amount of sides each dice has can be specified.',
+            'syntax' => '[dice = 1] [sides = 6]',
+        ],
     ];
 
     /**

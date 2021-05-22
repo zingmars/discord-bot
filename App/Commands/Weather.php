@@ -44,6 +44,14 @@ class Weather extends AbstractCommand
 
         $result = json_decode($output);
 
+        if (isset($result->message)) {
+            $message = "Encountered an error: %s.";
+            $message = sprintf($message, $result->message);
+            $this->react('❌');
+            $this->reply($message);
+            return;
+        }
+
         $temp = $result->main->temp;
         $description = $result->weather[0]->main;
 
