@@ -40,4 +40,5 @@ If you want to use docker `TODO`...
 * To add new commands, create a class that extends AbstractCommand in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php). Just look at other commands for examples.
 * You can get OpenWeather API keys [here](https://home.openweathermap.org/api_keys) (account needed, free tier is available, although limited).
 * You can get WolframAlpha API keys [here](https://developer.wolframalpha.com/portal/myapps/).
+* You can get Shodan API keys [here](https://developer.shodan.io/);
 * SPAM_TARGET settings are for a joke, don't mind those.

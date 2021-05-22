@@ -9,6 +9,7 @@ use App\Commands\FindIp;
 use App\Commands\FindPhone;
 use App\Commands\Help;
 use App\Commands\Lenny;
+use App\Commands\LocateIp;
 use App\Commands\Ping;
 use App\Commands\ReallyFuckingLove;
 use App\Commands\Roll;
@@ -36,6 +37,7 @@ class CommandHelper
         'insult' => ChristianInsult::class,
         'joke' => DadJoke::class,
         'wa' => WolframAlpha::class,
+        'locateip' => LocateIp::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -85,6 +87,12 @@ class CommandHelper
             'command' => 'findip',
             'shortDescription' => 'Find ip address',
             'longDescription' => 'Looks up a given ip address',
+            'syntax' => '[ip address]',
+        ],
+        LocateIp::class => [
+            'command' => 'locateip',
+            'shortDescription' => 'Find ip address',
+            'longDescription' => 'Looks up a given ip address using Shodan. Data might not be available for all IPs!',
             'syntax' => '[ip address]',
         ],
         FindPhone::class => [

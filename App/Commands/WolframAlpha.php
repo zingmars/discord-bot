@@ -36,8 +36,15 @@ class WolframAlpha extends AbstractCommand
 
         $query = urlencode(implode(' ', $this->arguments));
 
+        $apiKey = Env::Get('WOLFRAMALPHA_API_KEY');
+        if (empty($apiKey)) {
+            $this->reply('App ID not set. No Wolfram Alpha for you :(');
+            $this->react('❌');
+            return;
+        }
+
         $url = 'http://api.wolframalpha.com/v2/query?input=%s&appid=%s';
-        $url = sprintf($url, $query, Env::Get('WOLFRAMALPHA_API_KEY'));
+        $url = sprintf($url, $query, $apiKey);
 
         $output = Curl::Get($url);
 
