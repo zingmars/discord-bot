@@ -4,3 +4,4 @@ vendor/
 composer.phar
 db.sqlite
 *.sw[a-p]
+Data/*

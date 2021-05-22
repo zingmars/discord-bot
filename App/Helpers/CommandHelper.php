@@ -11,6 +11,8 @@ use App\Commands\ReallyFuckingLove;
 use App\Commands\Roll;
 use App\Commands\Say;
 use App\Commands\Fact;
+use App\Commands\SpamGL;
+use App\Commands\SpamGLCount;
 use App\Commands\Weather;
 use JetBrains\PhpStorm\Pure;
 
@@ -29,7 +31,9 @@ class CommandHelper
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
-        'lenny' => Lenny::class
+        'lenny' => Lenny::class,
+        'spamgl' => SpamGL::class,
+        'spamcount' => SpamGLCount::class,
     ];
 
     public const COMMANDS_DESCRIPTIONS = [
