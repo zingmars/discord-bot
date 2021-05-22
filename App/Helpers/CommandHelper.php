@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Commands\EightBall;
 use App\Commands\Help;
 use App\Commands\Ping;
+use App\Commands\ReallyFuckingLove;
 use App\Commands\Roll;
 use App\Commands\Say;
 use App\Commands\Fact;
@@ -22,6 +23,7 @@ class CommandHelper
         'tfw' => Weather::class,
         'weather' => Weather::class,
         'roll' => Roll::class,
+        'rfl' => ReallyFuckingLove::class,
     ];
 
     public const COMMANDS_DESCRIPTIONS = [
