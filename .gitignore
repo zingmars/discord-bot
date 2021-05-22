@@ -1,4 +1,6 @@
 .idea/
 vendor/
 .env
+composer.phar
 db.sqlite
+*.sw[a-p]

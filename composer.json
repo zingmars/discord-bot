@@ -3,20 +3,12 @@
     "team-reflex/discord-php": "dev-master",
     "vlucas/phpdotenv": "^5.3",
     "ext-json": "*",
-    "sjohnson/market-data": "dev-master",
     "doctrine/orm": "^2.8"
   },
   "repositories": [
     {
       "type": "vcs",
       "url":  "git@github.com:svengjohnson/DiscordPHP.git"
-    },
-    {
-      "type": "path",
-      "url": "/Volumes/Development/Stonks/MarketData",
-      "options": {
-        "symlink": true
-      }
     }
   ],
   "autoload": {

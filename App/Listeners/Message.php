@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Classes\Command;
 use App\Helpers\CommandHelper;
+use App\Helpers\Env;
 use App\Helpers\Log;
 use App\Helpers\Retard;
 use Discord\Discord;
@@ -33,16 +34,9 @@ class Message
         Log::console(sprintf($logMessage, $message->author->username, $message->content));
         $this->handleCommand();
 
-        if (str_starts_with($this->message->content, 'pls traps')) {
-            $this->message->reply('go commit self neck rope');
-        }
-
+        // Memes
         if (str_contains($this->message->content, 'https://cdn.discordapp.com/attachments/810884195516809238/829332905426812938/c82ef193241b16732d724ddac309698d.mp4')) {
             $this->message->reply('debils esi?');
-        }
-
-        if ($this->message->author->id === '680134378860314633') {
-            #$this->message->delete();
         }
     }
 
@@ -57,7 +51,7 @@ class Message
             return;
         }
 
-        if ($content[0] !== '.') {
+        if ($content[0] !== Env::get('COMMAND_PREFIX')) {
             return;
         }
 
@@ -73,7 +67,6 @@ class Message
             $command = new Command($this->discord, $this->entityManager, $this->message, $arguments);
             new $commandClass($command);
         } else {
-            //$this->message->reply(Retard::getRandomMessage());
             $this->message->react('❌');
         }
 
