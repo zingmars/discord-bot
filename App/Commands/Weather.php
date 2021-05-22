@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Curl;
 use App\Helpers\Env;
 use Exception;
 
@@ -36,12 +37,7 @@ class Weather extends AbstractCommand
         $url = 'http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&appid=%s';
         $url = sprintf($url, $this->arguments[0], $apiKey);
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($curl);
-        curl_close($curl);
-
+        $output = Curl::Get($url);
         $result = json_decode($output);
 
         if (isset($result->message)) {

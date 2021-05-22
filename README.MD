@@ -3,6 +3,8 @@ Discord bot
 
 A slightly modified version of [this](https://github.com/svengjohnson/discord-bot). Re-licensed just because I could.
 
+A lot of the plugins were ported from an older IRC bot [IRCLinkBot or TaiiwoBot](https://github.com/Taiiwo/IRCLinkBot).
+
 ### Requirements
 
 * php 8.0

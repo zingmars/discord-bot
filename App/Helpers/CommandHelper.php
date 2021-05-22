@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Commands\EightBall;
+use App\Commands\FindIp;
 use App\Commands\Help;
 use App\Commands\Ping;
 use App\Commands\ReallyFuckingLove;
@@ -24,6 +25,7 @@ class CommandHelper
         'weather' => Weather::class,
         'roll' => Roll::class,
         'rfl' => ReallyFuckingLove::class,
+        'findip' => FindIp::class,
     ];
 
     public const COMMANDS_DESCRIPTIONS = [
@@ -60,8 +62,14 @@ class CommandHelper
         Roll::class => [
             'command' => 'roll',
             'shortDescription' => 'Roll',
-            'longDescription' => 'Rolls dice. Optionally the amount of dice and the amount of sides each dice has can be specified.',
+            'longDescription' => 'Rolls dice. Optionally the amount of dice and the amount of sides each dice has can be specified',
             'syntax' => '[dice = 1] [sides = 6]',
+        ],
+        FindIp::class => [
+            'command' => 'findip',
+            'shortDescription' => 'Find ip address',
+            'longDescription' => 'Looks up a given ip address',
+            'syntax' => '[ip address]',
         ],
     ];
 

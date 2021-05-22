@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Curl;
 use Exception;
 
 class Fact extends AbstractCommand
@@ -20,11 +21,7 @@ class Fact extends AbstractCommand
      */
     public function execute(): void
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://randomfunfacts.com");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($curl);
-        curl_close($curl);
+        $output = Curl::Get("http://randomfunfacts.com");
 
         preg_match('/<strong><i>(.*?)<\/i><\/strong>/s', $output, $result);
 
