@@ -25,5 +25,6 @@ class ReallyFuckingLove extends AbstractCommand implements CommandInterface
     {
         $message = implode(' ', $this->arguments);
         $this->channelMessage('I really fucking love ' . $message);
+        $this->message->delete();
     }
 }
