@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Commands\EightBall;
 use App\Commands\FindIp;
+use App\Commands\FindPhone;
 use App\Commands\Help;
 use App\Commands\Lenny;
 use App\Commands\Ping;
@@ -28,6 +29,7 @@ class CommandHelper
         'weather' => Weather::class,
         'roll' => Roll::class,
         'findip' => FindIp::class,
+        'findphone' => FindPhone::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -78,6 +80,12 @@ class CommandHelper
             'shortDescription' => 'Find ip address',
             'longDescription' => 'Looks up a given ip address',
             'syntax' => '[ip address]',
+        ],
+        FindPhone::class => [
+            'command' => 'findphone',
+            'shortDescription' => 'Lookup phone number\'s caller id',
+            'longDescription' => 'Looks up a phone number to see if they have a caller id',
+            'syntax' => '[phone number]',
         ],
     ];
 

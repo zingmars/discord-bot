@@ -32,6 +32,8 @@ class Weather extends AbstractCommand
         $apiKey = Env::Get('OPENWEATHER_API_KEY');
         if (empty($apiKey)) {
             $this->reply('API key not set. No weather for you :(');
+            $this->react('❌');
+            return;
         }
 
         $url = 'http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&appid=%s';
