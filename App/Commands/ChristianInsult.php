@@ -14,7 +14,7 @@ class ChristianInsult extends AbstractCommand
      */
     public function validate(): bool
     {
-        if (empty($this->arguments) || !preg_match('/^<@!(.*)>$/', $this->arguments[0])) {
+        if (empty($this->arguments) || !preg_match('/^<@!?(.*)>$/', $this->arguments[0])) {
             $reply = 'syntax: %s%s [user]';
             $this->reply(sprintf($reply, Env::Get('COMMAND_PREFIX'), $this->name));
             $this->react('❌');

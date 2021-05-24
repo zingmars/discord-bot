@@ -190,7 +190,7 @@ class Weather extends AbstractCommand
 
         $flavour = $flavours[array_rand($flavours)];
 
-        $response = "%s - %s - %s - %s, %s at %s";
+        $response = "%s°C - %s - %s - %s, %s at %s";
         $response = sprintf($response, $temp, $remark, $flavour, $result->name, $result->sys->country, date("H:i d/m/Y"));
 
         $this->reply($response);

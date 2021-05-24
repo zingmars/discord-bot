@@ -60,7 +60,8 @@ class Message
 
         // Cleverbot (only if enabled and bot was directly mentioned)
         if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
-            preg_match('/^<@!(.*?)>/s', $content, $match);
+            Log::console("Processing cleverbot message: " . $content);
+            preg_match('/^<@!?(.*?)>/s', $content, $match);
             if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
                 // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
                 if (count($this->message->mentions) > 1) {
