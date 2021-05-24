@@ -31,6 +31,9 @@ class Message
         $logMessage = 'Received a message from %s: %s';
         Log::console(sprintf($logMessage, $message->author->username, $message->content));
 
+        // Don't handle private messages.
+        if ($this->message->channel->is_private) return;
+
         // Ghetto error handling
         try {
             $this->handleCommand();
