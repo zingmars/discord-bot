@@ -59,8 +59,11 @@ class WolframAlpha extends AbstractCommand
             $embed->setTitle('Wolfram Alpha result:');
             $body = '**Input:** %s ' . PHP_EOL . '**Answer:**:' . PHP_EOL . '%s' . PHP_EOL . PHP_EOL . '**More info:** https://www.wolframalpha.com/input/?i=%s';
 
+            // WolframAlpha API returns XML with results being separated into <pod> elements.
+            // First pod is guaranteed to be interpretation.
             $interpretation = $pods->item(0)->childNodes->item(1)->childNodes->item(3)->nodeValue;
 
+            // The format for pods differ. Rather than try to guess the format just extract all text values.
             $result = '';
             foreach(range(1, $pods->count()) as $podNumber) {
                 $currNode = $pods->item($podNumber);
@@ -74,6 +77,7 @@ class WolframAlpha extends AbstractCommand
                     }
                 }
 
+                // Truncate the output because we don't want to spam the chat window too much.
                 if (strlen($result) >= 500) {
                     $result = substr($result, 0, 500) . '...';
                     break;

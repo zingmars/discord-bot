@@ -53,6 +53,7 @@ class Weather extends AbstractCommand
         $temp = $result->main->temp;
         $description = $result->weather[0]->main;
 
+        // Implementation shamelessly stolen off Taiiwobot who then stole it from god knows where.
         if ($temp < 6) {
             $remark = "IT'S FUCKING COLD";
             $flavours = [
