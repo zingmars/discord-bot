@@ -44,6 +44,8 @@ class EightBall extends AbstractCommand implements CommandInterface
      */
     public function execute(): void
     {
+        var_dump($members = $this->message->channel->guild->members);
+
         $responseType = rand(0, count($this->responses) - 1);
         $responseKey = rand(0, count($this->responses[$responseType]) - 1);
 
@@ -64,8 +66,8 @@ class EightBall extends AbstractCommand implements CommandInterface
     private function getRandomMember(): string
     {
         $members = $this->message->channel->guild->members;
-        $memberList = [];
 
+        $memberList = [];
         foreach ($members as $member) {
             // ignore bot
             if ($member->user->id === (int)Env::get('BOT_USER_ID')) {
@@ -85,8 +87,11 @@ class EightBall extends AbstractCommand implements CommandInterface
             $memberList[] = $member->user->id;
         }
 
-        //TODO: Handle empty channels
-        $randomMemberKey = rand(0, count($memberList) - 1);
-        return $memberList[$randomMemberKey];
+        if (count($memberList) > 0) {
+            $randomMemberKey = rand(0, count($memberList) - 1);
+            return $memberList[$randomMemberKey];
+        } else {
+            return Env::get('BOT_USER_ID');
+        }
     }
 }

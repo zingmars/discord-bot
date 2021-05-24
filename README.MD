@@ -22,6 +22,7 @@ For cleverbot support you'll also need
 Bot:
 
 * Create a new app [here](https://discord.com/developers/applications/) and add a new Bot in the Bot menu.
+  * for the 8-ball plugin you'll need to enable the Server members and presence intents, or it will sometimes fail.
 * Replace APPID with your application's ID (Found in App's General Information) in the following URL and open this URL in your browser: https://discord.com/oauth2/authorize?client_id=APPID&scope=bot .
 
 Project:
