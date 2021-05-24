@@ -35,7 +35,6 @@ class Curl
             $cookiesStr .= $name . '=' . $value . '; ';
         }
         $cookiesStr = trim("Cookie: " . $cookiesStr);
-        var_dump($cookiesStr);
 
         array_push($headers, $cookiesStr);
 
