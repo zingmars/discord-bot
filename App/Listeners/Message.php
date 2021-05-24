@@ -34,6 +34,12 @@ class Message
         // Don't handle private messages.
         if ($this->message->channel->is_private) return;
 
+        // Don't let the bot talk to itself.
+        if ($this->message->author->id === Env::get('BOT_USER_ID')) return;
+
+        // Don't let the bot handle bot messages to avoid loops.
+        if ($this->message->author->bot) return;
+
         // Ghetto error handling
         try {
             $this->handleCommand();
@@ -60,9 +66,10 @@ class Message
 
         // Cleverbot (only if enabled and bot was directly mentioned)
         if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
-            Log::console("Processing cleverbot message: " . $content);
             preg_match('/^<@!?(.*?)>/s', $content, $match);
             if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
+                Log::console("Processing cleverbot message: " . $content);
+
                 // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
                 if (count($this->message->mentions) > 1) {
                     foreach ($this->message->mentions as $mention) {
