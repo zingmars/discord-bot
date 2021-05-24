@@ -15,7 +15,7 @@ A lot of the plugins were ported from an older IRC bot [IRCLinkBot or TaiiwoBot]
 For cleverbot support you'll also need
 
 * NodeJS
-    * The following libraries: superagent md5 (`npm install superagent md5`)
+    * The following libraries: superagent md5 (`cd Lib && npm install superagent md5`)
 
 ### Setup
 

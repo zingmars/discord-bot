@@ -5,3 +5,4 @@ composer.phar
 db.sqlite
 *.sw[a-p]
 Data/spam_plugin_data
+debug.log
