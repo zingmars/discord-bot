@@ -6,7 +6,7 @@ use App\Listeners\Message;
 use App\Services\CleverbotService;
 use Discord\Discord;
 
-class Fuckboy
+class Bot
 {
     public function __construct(Discord $discord, CleverbotService $cleverbotService)
     {

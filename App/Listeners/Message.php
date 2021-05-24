@@ -30,7 +30,13 @@ class Message
 
         $logMessage = 'Received a message from %s: %s';
         Log::console(sprintf($logMessage, $message->author->username, $message->content));
-        $this->handleCommand();
+
+        // Ghetto error handling
+        try {
+            $this->handleCommand();
+        } catch (Exception $ignored) {
+            $this->message->react('🚨');
+        }
     }
 
     /**
@@ -49,18 +55,32 @@ class Message
             $this->message->reply('debils esi?');
         }
 
-        // Cleverbot
-        preg_match('/^<@!(.*?)>/s', $content, $match);
-        if (count($match) > 0) {
-            if ($match[1] === Env::get('BOT_USER_ID')) {
-                $message = strstr($content," ");
+        // Cleverbot (only if enabled and bot was directly mentioned)
+        if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
+            preg_match('/^<@!(.*?)>/s', $content, $match);
+            if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
+                // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
+                if (count($this->message->mentions) > 1) {
+                    foreach ($this->message->mentions as $mention) {
+                        $content = str_replace('<@!'.$mention->id.'>', $mention->username, $content);
+                    }
+                }
+
+                // Remove the original mention from the string sent to Cleverbot.
+                $message = trim(strstr($content," "));
+
                 $response = $this->cleverbotService->makeRequest($message);
                 if ($response !== null) {
-                    $this->message->reply($response);
+                    if ($response === false) {
+                        $this->message->react('😭');
+                    } else {
+                        $this->message->reply($response);
+                    }
                 }
             }
         }
 
+        // Handle commands normally
         if ($content[0] !== Env::get('COMMAND_PREFIX')) {
             return;
         }
@@ -73,7 +93,6 @@ class Message
         $logMessage = 'Received a command from %s: %s';
         $commandClass = CommandHelper::getClassName($commandName);
 
-        //TODO: exception handling
         if (class_exists($commandClass)) {
             $command = new Command($this->discord, $this->message, $arguments);
             new $commandClass($command);

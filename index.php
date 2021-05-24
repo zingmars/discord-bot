@@ -2,7 +2,7 @@
 
 include __DIR__ . '/vendor/autoload.php';
 
-use App\Fuckboy;
+use App\Bot;
 use App\Helpers\Env;
 use App\Services\CleverbotService;
 use Discord\Discord;
@@ -11,7 +11,11 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$cleverbotService = new CleverbotService(Env::get('CLEVERBOT_FILE_HISTORY'), Env::get('CLEVERBOT_FILE_COOKIE'));
+if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
+    $cleverbotService = new CleverbotService();
+} else {
+    $cleverbotService = null;
+}
 
 $discord = new Discord(
     [
@@ -24,7 +28,7 @@ $discord->on(
     'ready',
     function ($discord) use ($cleverbotService) {
         echo "Bot is ready.", PHP_EOL;
-        new Fuckboy($discord, $cleverbotService);
+        new Bot($discord, $cleverbotService);
     }
 );
 

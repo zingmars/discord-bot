@@ -12,6 +12,11 @@ A lot of the plugins were ported from an older IRC bot [IRCLinkBot or TaiiwoBot]
 * xml extension (php8.0-xml)
 * composer
 
+For cleverbot support you'll also need
+
+* NodeJS
+    * The following libraries: superagent md5 (`npm install superagent md5`)
+
 ### Setup
 
 Bot:
@@ -25,6 +30,7 @@ Project:
 * `php composer.phar install`
 * `cp .env.example .env`
 * Copy your access token, owner's id etc into the .env file. Bot user id is the same as your application id.
+* (Optional for cleverbot support) `git submodule update --init --recursive` and set `ENABLE_CLEVERBOT` to True in .env.
 
 ### Run
 
