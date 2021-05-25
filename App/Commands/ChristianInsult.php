@@ -29,8 +29,21 @@ class ChristianInsult extends AbstractCommand
      */
     public function execute(): void
     {
+        if (strpos($this->arguments[0], Env::Get('BOT_USER_ID'))) {
+            $this->message->reply("RUDE!");
+            return;
+        }
+
+        /*
+        if (strpos($this->arguments[0], Env::Get('BOT_OWNER_USER_ID'))) {
+            $this->channelMessage($this->arguments[0] . ' is a lovely person and you should all strive to be like him!');
+            $this->message->delete();
+            return;
+        }
+        */
+
         $lines = FileStore::Get("Luther.txt");
-        if ($lines == false || strpos($this->arguments[0], Env::Get('BOT_OWNER_USER_ID'))) {
+        if ($lines == false) {
             $this->channelMessage($this->arguments[0] . ' is a good boy!');
             return;
         }

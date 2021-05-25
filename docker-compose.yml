@@ -4,9 +4,12 @@ services:
         build:
             context: .
             dockerfile: Docker/Dockerfile
+        environment:
+            - CLEVERBOT_HISTORY_LOG=false
         mem_limit: 128m
         cpus: 2.00
         restart: on-failure
         volumes:
             - .env:/bot/.env
             - ./Data:/bot/Data
+            - ./Log:/bot/Log

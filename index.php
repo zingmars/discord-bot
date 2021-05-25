@@ -6,6 +6,7 @@ use App\Bot;
 use App\Helpers\Env;
 use App\Services\CleverbotService;
 use Discord\Discord;
+use Discord\WebSockets\Intents;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -21,6 +22,7 @@ $discord = new Discord(
     [
         'token' => Env::get('DISCORD_BOT_TOKEN'),
         'loadAllMembers' => true,
+        'intents' => Intents::getDefaultIntents() | Intents::GUILD_MEMBERS
     ]
 );
 

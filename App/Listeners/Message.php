@@ -28,8 +28,8 @@ class Message
         $this->message = $message;
         $this->cleverbotService = $cleverbotService;
 
-        $logMessage = 'Received a message from %s: %s';
-        Log::console(sprintf($logMessage, $message->author->username, $message->content));
+        $logMessage = '[%s] Received a message from %s#%s: %s';
+        Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $this->message->author->username, $this->message->author->discriminator, $message->content));
 
         // Don't handle private messages.
         if ($this->message->channel->is_private) return;
@@ -68,8 +68,6 @@ class Message
         if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
             preg_match('/^<@!?(.*?)>/s', $content, $match);
             if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
-                Log::console("Processing cleverbot message: " . $content);
-
                 // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
                 if (count($this->message->mentions) > 1) {
                     foreach ($this->message->mentions as $mention) {
@@ -77,8 +75,11 @@ class Message
                     }
                 }
 
-                // Remove the original mention from the string sent to Cleverbot.
+                // Remove the original bot mention from the string sent to Cleverbot.
                 $message = trim(strstr($content," "));
+
+                $logMessage = "[%s] Processing cleverbot message: %s";
+                Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $content));
 
                 $response = $this->cleverbotService->makeRequest($message);
                 if ($response !== null) {
@@ -96,12 +97,17 @@ class Message
             return;
         }
 
+        // Some prefixes (like !) might be spammed naturally by users. Ignore such cases (i.e. '!!!!!!!').
+        if ($content[1] === Env::get('COMMAND_PREFIX')) {
+            return;
+        }
+
         $content = substr($content, 1);
         $arguments = explode(' ', $content);
 
         $commandName = $arguments[0];
 
-        $logMessage = 'Received a command from %s: %s';
+        $logMessage = '[%s] Executing a command: %s (%s)';
         $commandClass = CommandHelper::getClassName($commandName);
 
         if (class_exists($commandClass)) {
@@ -111,6 +117,6 @@ class Message
             $this->message->react('❌');
         }
 
-        Log::console(sprintf($logMessage, $this->message->author->username, $commandName, implode(' ', $arguments)));
+        Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $commandName, implode(' ', $arguments)));
     }
 }

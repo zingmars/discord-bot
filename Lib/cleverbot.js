@@ -1,7 +1,8 @@
 const cleverbot = require("./cleverbot-free/index.js");
 const process = require('process');
 
-const debug = false;
+let debug = false;
+if (process.env.CLEVERBOT_HISTORY_LOG === 'true') debug = true;
 const history = [];
 
 let fs = null;
@@ -19,7 +20,7 @@ process.stdin.on('data', data => {
         }
 
         if (fs) {
-            fs.appendFileSync("debug.log", JSON.stringify(history));
+            fs.writeFileSync("./Log/debug.log", JSON.stringify(history));
         }
         console.log(response);
     });

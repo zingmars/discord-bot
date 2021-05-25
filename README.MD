@@ -63,3 +63,4 @@ To run:
 * You can get WolframAlpha API keys [here](https://developer.wolframalpha.com/portal/myapps/).
 * You can get Shodan API keys [here](https://developer.shodan.io/);
 * SPAM_TARGET settings are for a joke, don't mind those.
+* Logging is done to stdout (with the exception of the cleverbot plugin, you'll need to enable debug mode, and it will log to the [Log](./Log) directory). If you're using docker-compose, you can use `docker-compose logs` to track the logs.
