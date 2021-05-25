@@ -30,7 +30,7 @@ class ChristianInsult extends AbstractCommand
     public function execute(): void
     {
         $lines = FileStore::Get("Luther.txt");
-        if ($lines == false) {
+        if ($lines == false || strpos($this->arguments[0], Env::Get('BOT_OWNER_USER_ID'))) {
             $this->channelMessage($this->arguments[0] . ' is a good boy!');
             return;
         }
