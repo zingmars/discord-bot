@@ -9,4 +9,4 @@ services:
         restart: on-failure
         volumes:
             - .env:/bot/.env
-            - Data:/bot/Data
+            - ./Data:/bot/Data
