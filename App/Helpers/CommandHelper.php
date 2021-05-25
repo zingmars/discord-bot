@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Commands\ChristianInsult;
 use App\Commands\DadJoke;
+use App\Commands\Dictionary;
 use App\Commands\EightBall;
 use App\Commands\FindIp;
 use App\Commands\FindPhone;
@@ -38,6 +39,7 @@ class CommandHelper
         'joke' => DadJoke::class,
         'wa' => WolframAlpha::class,
         'locateip' => LocateIp::class,
+        'define' => Dictionary::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -110,14 +112,20 @@ class CommandHelper
         DadJoke::class => [
             'command' => 'joke',
             'shortDescription' => 'Get a dad joke',
-            'longDescription' => 'Get a random joke',
+            'longDescription' => 'Get a random (dad) joke',
             'syntax' => '',
         ],
         WolframAlpha::class => [
             'command' => 'wa',
             'shortDescription' => 'Execute a query against WolframAlpha',
-            'longDescription' => 'Run query on WolframAlpha',
+            'longDescription' => 'Run query on WolframAlpha. Please note that this command might take a while to output because WolframAlpha is quite slow.',
             'syntax' => '[query]',
+        ],
+        Dictionary::class => [
+            'command' => 'define',
+            'shortDescription' => 'Define a word',
+            'longDescription' => 'Get a definition of a word',
+            'syntax' => '[word] [language=en_US|en_GB|hi|es|fr|ja|ru|de|it|ko|pt-BR|ar|tr]',
         ],
     ];
 

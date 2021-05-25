@@ -22,7 +22,7 @@ $discord = new Discord(
     [
         'token' => Env::get('DISCORD_BOT_TOKEN'),
         'loadAllMembers' => true,
-        'intents' => Intents::getDefaultIntents() | Intents::GUILD_MEMBERS
+        //'intents' => Intents::getDefaultIntents() | Intents::GUILD_MEMBERS // TODO: Uncomment this when you update to latest version of DiscordPHP.
     ]
 );
 

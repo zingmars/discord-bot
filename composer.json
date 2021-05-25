@@ -6,6 +6,12 @@
     "ext-curl": "*",
     "ext-dom": "*"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@github.com:svengjohnson/DiscordPHP.git"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "App\\": "App/"

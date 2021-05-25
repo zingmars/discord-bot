@@ -29,6 +29,7 @@ class SpamGLCount extends AbstractCommand
     {
         $spamCount = (int)FileStore::Get(Env::Get('SPAM_TARGET_FILE_NAME'));
         if ($spamCount == false) {
+            $this->reply("Plugin has not bee initialised yet");
             return;
         }
         $this->channelMessage('Good luck has been spammed ' . $spamCount . ' times.');
