@@ -64,3 +64,7 @@ To run:
 * You can get Shodan API keys [here](https://developer.shodan.io/);
 * SPAM_TARGET settings are for a joke, don't mind those.
 * Logging is done to stdout (with the exception of the cleverbot plugin, you'll need to enable debug mode, and it will log to the [Log](./Log) directory). If you're using docker-compose, you can use `docker-compose logs` to track the logs.
+
+### Known bugs
+
+* 8-ball's "Ask <someone else>" output might not work due to an issue with DiscordPHP. This issue is fixed in the latest version, but for now I'm using an older fork because DiscordPHP doesn't allow embeds in replies.
