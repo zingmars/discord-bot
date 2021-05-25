@@ -5,7 +5,8 @@ services:
             context: .
             dockerfile: Docker/Dockerfile
         mem_limit: 128m
-        cpus: 1.00
+        cpus: 2.00
         restart: on-failure
         volumes:
-            - .env:/bot/.env 
+            - .env:/bot/.env
+            - Data:/bot/Data

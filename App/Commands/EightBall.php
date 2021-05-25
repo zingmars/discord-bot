@@ -44,8 +44,6 @@ class EightBall extends AbstractCommand implements CommandInterface
      */
     public function execute(): void
     {
-        var_dump($members = $this->message->channel->guild->members);
-
         $responseType = rand(0, count($this->responses) - 1);
         $responseKey = rand(0, count($this->responses[$responseType]) - 1);
 

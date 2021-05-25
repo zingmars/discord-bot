@@ -118,8 +118,8 @@ class Weather extends AbstractCommand
                 "Slap me around and call me Sally. It'd be an improvement.",
                 "Today is the perfect size, really honey.",
                 "Maybe Jersey Shore is on tonight."];
-        } else if ($temp > 20 || $temp < 21) {
-            // 20C/21C = 69F. We approximate.
+        } else if ($temp > 20.3 || $temp < 20.6) {
+            // 20.5 = 69F. We approximate.
             $remark = "IT'S FUCKING SEXY TIME (~69F)";
             $flavours = [
                 "Why is 77 better than 69? You get eight more.",
@@ -191,7 +191,7 @@ class Weather extends AbstractCommand
         $flavour = $flavours[array_rand($flavours)];
 
         $response = "%s°C - %s - %s - %s, %s at %s";
-        $response = sprintf($response, $temp, $remark, $flavour, $result->name, $result->sys->country, date("H:i d/m/Y"));
+        $response = sprintf($response, $temp, $remark, $flavour, $result->name, $result->sys->country, date("Y-m-d H:i T"));
 
         $this->reply($response);
     }

@@ -49,7 +49,11 @@ If you want to use docker you'll need:
 * docker
 * docker-compose
 
-In the project's directory run `docker-compose build` (don't forget to initialise submodules if you want cleverbot). This will create a docker image. You can then run the image manually or use the same docker-compose.yml file if you want. Just be sure to specify an .env file as a volume. 
+To run:
+
+* In the project's directory run `docker-compose build` (don't forget to initialise submodules if you want cleverbot). Alternatively you can try `docker build -f Docker/Dockerfile .`. This will create a docker image. 
+* You can then run the image manually or use the same `docker-compose.yml` file if you want to run it (`docker-compose up`). Just be sure to specify an .env file and a Data directory as a volume if you're running it manually.
+
 
 ### Miscellaneous
 
