@@ -55,16 +55,16 @@ class CommandHelper
             'longDescription' => 'List of commands',
             'syntax' => '',
         ],
+        Ping::class => [
+            'command' => 'ping',
+            'shortDescription' => 'Ping',
+            'longDescription' => 'Returns a message to verify that the bot is indeed alive',
+            'syntax' => '',
+        ],
         EightBall::class => [
             'command' => '8ball',
             'shortDescription' => '8 Ball',
             'longDescription' => 'Shakes a 8ball and returns a response',
-            'syntax' => '',
-        ],
-        Ping::class => [
-            'command' => 'ping',
-            'shortDescription' => 'Ping',
-            'longDescription' => 'Returns a message to verify that the bot is indeed a live',
             'syntax' => '',
         ],
         Fact::class => [
