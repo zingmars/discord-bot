@@ -68,7 +68,7 @@ class CommandHelper
         EightBall::class => [
             'command' => '8ball',
             'shortDescription' => '8 Ball',
-            'longDescription' => 'Shakes a 8ball and returns a response.',
+            'longDescription' => 'Shakes an 8ball and returns a response.',
             'syntax' => '',
         ],
         Fact::class => [
