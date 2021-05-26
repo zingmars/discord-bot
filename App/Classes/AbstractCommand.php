@@ -66,21 +66,7 @@ abstract class AbstractCommand implements CommandInterface
      */
     protected function reply(string $message, ?Embed $embed = null): ExtendedPromiseInterface
     {
-        $channel = $this->message->channel;
-        $guildId = null;
-
-        if ($channel->guild) {
-            $guildId = $channel->guild->id;
-        }
-
-        $reference = [
-            'message_id' => $this->message->id,
-            'channel_id' => $channel->id,
-            'guild_id' => $guildId,
-            'fail_if_not_exists' => false,
-        ];
-
-        return $this->message->channel->sendMessage($message, false, $embed, false, $reference);
+        return $this->message->channel->sendMessage($message, false, $embed, null, $this->message);
     }
 
     /**

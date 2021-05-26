@@ -6,7 +6,6 @@ use App\Classes\AbstractCommand;
 use App\Helpers\Curl;
 use App\Helpers\Env;
 use Discord\Parts\Embed\Embed;
-use Discord\Parts\Part;
 use Exception;
 
 class Dictionary extends AbstractCommand
