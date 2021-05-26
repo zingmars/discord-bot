@@ -8,8 +8,7 @@ A lot of the plugins were ported from an older IRC bot [IRCLinkBot or TaiiwoBot]
 ### Requirements
 
 * php 8.0
-* curl extension (php8.0-curl)
-* xml extension (php8.0-xml)
+  * the following php extensions: php8.0-curl, php8.0-xml, php8.0-mbstring
 * composer
 
 For cleverbot support you'll also need
@@ -64,7 +63,3 @@ To run:
 * You can get Shodan API keys [here](https://developer.shodan.io/);
 * SPAM_TARGET settings are for a joke, don't mind those.
 * Logging is done to stdout (with the exception of the cleverbot plugin, you'll need to enable debug mode, and it will log to the [Log](./Log) directory). If you're using docker-compose, you can use `docker-compose logs` to track the logs.
-
-### Known bugs
-
-* 8-ball's "Ask <someone else>" output might not work due to an issue with DiscordPHP. This issue is fixed in the latest version, but for now I'm using an older fork because DiscordPHP doesn't allow embeds in replies.

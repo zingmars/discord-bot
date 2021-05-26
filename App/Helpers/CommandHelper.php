@@ -18,6 +18,7 @@ use App\Commands\Say;
 use App\Commands\Fact;
 use App\Commands\SpamGL;
 use App\Commands\SpamGLCount;
+use App\Commands\Translate;
 use App\Commands\Weather;
 use App\Commands\WolframAlpha;
 use JetBrains\PhpStorm\Pure;
@@ -40,6 +41,7 @@ class CommandHelper
         'wa' => WolframAlpha::class,
         'locateip' => LocateIp::class,
         'define' => Dictionary::class,
+        'translate' => Translate::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -126,6 +128,12 @@ class CommandHelper
             'shortDescription' => 'Define a word',
             'longDescription' => 'Get a definition of a word. Language is optional if the word isn\'t in English. Note that returned results are in the same language as the word itself.',
             'syntax' => '[word] [language=en_US|en_GB|hi|es|fr|ja|ru|de|it|ko|pt-BR|ar|tr]',
+        ],
+        Translate::class => [
+            'command' => 'translate',
+            'shortDescription' => 'Translate a query',
+            'longDescription' => 'Translates text using Google Translate. Might not be 100% accurate, but what can you do. Might not even work because Google has banned my IP. Oops!',
+            'syntax' => '[query]',
         ],
     ];
 
