@@ -1,6 +1,6 @@
 {
   "require": {
-    "team-reflex/discord-php": "dev-master",
+    "team-reflex/discord-php": "^6.0",
     "vlucas/phpdotenv": "^5.3",
     "ext-json": "*",
     "ext-curl": "*",

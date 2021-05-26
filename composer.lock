@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f892c137642b5c3310442ee98d936cd4",
+    "content-hash": "2231b9128da97469934ddff8a8973f2f",
     "packages": [
         {
             "name": "discord-php/http",
@@ -2546,16 +2546,16 @@
         },
         {
             "name": "team-reflex/discord-php",
-            "version": "dev-master",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/discord-php/DiscordPHP.git",
-                "reference": "2bf2e4ce97e9e81228f0ceda2f5fac1eedb67188"
+                "reference": "1bd7abde74587c9b94eda228b349d2e97dc9a686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/discord-php/DiscordPHP/zipball/2bf2e4ce97e9e81228f0ceda2f5fac1eedb67188",
-                "reference": "2bf2e4ce97e9e81228f0ceda2f5fac1eedb67188",
+                "url": "https://api.github.com/repos/discord-php/DiscordPHP/zipball/1bd7abde74587c9b94eda228b349d2e97dc9a686",
+                "reference": "1bd7abde74587c9b94eda228b349d2e97dc9a686",
                 "shasum": ""
             },
             "require": {
@@ -2586,7 +2586,6 @@
                 "ext-mbstring": "For accurate calculations of string length when handling non-english characters.",
                 "ext-uv": "For a faster, and more performant loop. Preferred."
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -2609,9 +2608,9 @@
             "description": "An unofficial API to interact with the voice and text service Discord.",
             "support": {
                 "issues": "https://github.com/discord-php/DiscordPHP/issues",
-                "source": "https://github.com/discord-php/DiscordPHP/tree/master"
+                "source": "https://github.com/discord-php/DiscordPHP/tree/v6.0.1"
             },
-            "time": "2021-05-20T06:32:44+00:00"
+            "time": "2021-04-23T23:52:29+00:00"
         },
         {
             "name": "trafficcophp/bytebuffer",
@@ -2745,9 +2744,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "team-reflex/discord-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
