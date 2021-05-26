@@ -13,6 +13,14 @@ if (debug) {
 // Handle incoming messages
 process.stdin.on('data', data => {
     let message = data.toString();
+
+    // Clear history to reset the topic
+    if (message === "{pass}") {
+        history.splice(0,history.length);
+        //message = "Hello!";
+    }
+
+    // Send a message to cleverbot
     cleverbot(message, history).then(response => {
         history.push(message, response);
         if (history.length > 60) {
