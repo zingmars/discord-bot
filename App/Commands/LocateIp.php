@@ -38,13 +38,13 @@ class LocateIp extends AbstractCommand
         }
 
         $url = 'https://api.shodan.io/shodan/host/%s?key=%s';
-        $url = sprintf($url, $this->arguments[0], $apiKey);
+        $url = sprintf($url, urlencode($this->arguments[0]), $apiKey);
 
         $output = Curl::Get($url);
         $result = json_decode($output);
 
         if (isset($result->error)) {
-            $message = "Encountered an error: %s.";
+            $message = "Encountered an error: %s";
             $message = sprintf($message, $result->error);
             $this->react('❌');
             $this->reply($message);

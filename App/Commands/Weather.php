@@ -37,7 +37,7 @@ class Weather extends AbstractCommand
         }
 
         $url = 'http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&appid=%s';
-        $url = sprintf($url, $this->arguments[0], $apiKey);
+        $url = sprintf($url, urlencode($this->arguments[0]), $apiKey);
 
         $output = Curl::Get($url);
         $result = json_decode($output);

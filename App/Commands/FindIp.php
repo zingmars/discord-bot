@@ -31,7 +31,7 @@ class FindIp extends AbstractCommand
     public function execute(): void
     {
         $url = 'http://ip-api.com/json/%s?fields=65535';
-        $url = sprintf($url, $this->arguments[0]);
+        $url = sprintf($url, urlencode($this->arguments[0]));
 
         $output = Curl::Get($url);
         $result = json_decode($output);

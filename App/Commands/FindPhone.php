@@ -51,7 +51,7 @@ class FindPhone extends AbstractCommand
         }
 
         $url = 'https://api.opencnam.com/v2/phone/%s?format=json&account_sid=%s&auth_token=%s';
-        $url = sprintf($url, $this->arguments[0], $accountId, $apiKey);
+        $url = sprintf($url, urlencode($this->arguments[0]), $accountId, $apiKey);
 
         $output = Curl::Get($url);
         $result = json_decode($output);
