@@ -10,7 +10,6 @@ use Discord\Parts\Embed\Embed;
 
 class Help extends AbstractCommand implements CommandInterface
 {
-
     public function validate(): bool
     {
         return true;
