@@ -64,10 +64,8 @@ class Message
             $this->message->reply('debils esi?');
         }
 
-
-
         // Cleverbot (only if enabled and bot was directly mentioned)
-        if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
+        if (Env::get('ENABLE_CLEVERBOT') === "True") {
             preg_match('/^<@!?(.*?)>/s', $content, $match);
             if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
                 // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
