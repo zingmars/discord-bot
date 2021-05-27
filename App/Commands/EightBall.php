@@ -16,6 +16,7 @@ class EightBall extends AbstractCommand implements CommandInterface
         ],
         [
             'nē',
+            'no',
         ],
         [
             'nez',
@@ -44,11 +45,6 @@ class EightBall extends AbstractCommand implements CommandInterface
      */
     public function execute(): void
     {
-        $response = 'jāprasa <@%s>';
-
-        $this->reply(sprintf($response, $this->getRandomMember()));
-
-        /*
         $responseType = rand(0, count($this->responses) - 1);
         $responseKey = rand(0, count($this->responses[$responseType]) - 1);
 
@@ -61,7 +57,6 @@ class EightBall extends AbstractCommand implements CommandInterface
         } else {
             $this->reply($response);
         }
-        */
     }
 
     /**
