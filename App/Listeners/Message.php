@@ -64,6 +64,8 @@ class Message
             $this->message->reply('debils esi?');
         }
 
+
+
         // Cleverbot (only if enabled and bot was directly mentioned)
         if (Env::get('ENABLE_CLEVERBOT') === "True" ) {
             preg_match('/^<@!?(.*?)>/s', $content, $match);
@@ -72,6 +74,15 @@ class Message
                 if (count($this->message->mentions) > 1) {
                     foreach ($this->message->mentions as $mention) {
                         $content = str_replace('<@!'.$mention->id.'>', $mention->username, $content);
+                    }
+                }
+
+                // Resolve custom emoji to their values in order to avoid feeding Cleverbot Discord-specific syntax
+                preg_match_all('/<:\w+:[0-9]+>/', $content, $emojis);
+                if (count($emojis) > 0) {
+                    foreach ($emojis as $emoji) {
+                        preg_match('/<:(.*?):\d*?>/', $emoji[0], $val);
+                        $content = str_replace($emoji, $val[1], $content);
                     }
                 }
 
