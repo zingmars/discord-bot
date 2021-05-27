@@ -41,7 +41,6 @@ class Time extends AbstractCommand
         if (isset($result->error) && count($result->data) < 1) {
             $this->reply("An error occurred: " . $result->error->message);
         } else {
-            var_dump($result);
             $date = new DateTime("now", new DateTimeZone($result->data[0]->timezone_module->name));
             $this->reply($date->format("Y-m-d H:i:s T"));
         }
