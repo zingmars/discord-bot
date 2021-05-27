@@ -44,6 +44,11 @@ class EightBall extends AbstractCommand implements CommandInterface
      */
     public function execute(): void
     {
+        $response = 'jāprasa <@%s>';
+
+        $this->reply(sprintf($response, $this->getRandomMember()));
+
+        /*
         $responseType = rand(0, count($this->responses) - 1);
         $responseKey = rand(0, count($this->responses[$responseType]) - 1);
 
@@ -56,6 +61,7 @@ class EightBall extends AbstractCommand implements CommandInterface
         } else {
             $this->reply($response);
         }
+        */
     }
 
     /**
@@ -63,12 +69,14 @@ class EightBall extends AbstractCommand implements CommandInterface
      */
     private function getRandomMember(): string
     {
+        //TODO: Figure out a way to restrain this to the current channel, not the whole server
+        // DiscordPHP's channel-> members only works for voice channels.
         $members = $this->message->channel->guild->members;
 
         $memberList = [];
         foreach ($members as $member) {
             // ignore bot
-            if ($member->user->id === (int)Env::get('BOT_USER_ID')) {
+            if ($member->user->id === Env::get('BOT_USER_ID')) {
                 continue;
             }
 
@@ -78,16 +86,15 @@ class EightBall extends AbstractCommand implements CommandInterface
             }
 
             // ignore offline
-            if (is_null($member->client_status)) {
+            if ($member->status === "offline") {
                 continue;
             }
 
-            $memberList[] = $member->user->id;
+            array_push($memberList, $member->id);
         }
 
         if (count($memberList) > 0) {
-            $randomMemberKey = rand(0, count($memberList) - 1);
-            return $memberList[$randomMemberKey];
+            return $memberList[array_rand($memberList)];
         } else {
             return Env::get('BOT_USER_ID');
         }
