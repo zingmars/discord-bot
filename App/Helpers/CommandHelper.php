@@ -144,7 +144,7 @@ class CommandHelper
         Time::class => [
             'command' => 'time',
             'shortDescription' => 'Returns time in a location',
-            'longDescription' => 'Returns time in a given country or a city. Note that the location needs to have an entry in a TZ database, so smaller towns won\'t work. For those usage of the WolframAlpha command is recommended.',
+            'longDescription' => 'Returns time in a given country or a city.',
             'syntax' => '[location]',
         ],
         Locate::class => [
