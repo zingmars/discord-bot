@@ -30,6 +30,9 @@ class TranslateLV extends AbstractCommand
     {
         $tr = new GoogleTranslate('lv');
         $tr->setSource();
-        $this->reply($tr->translate(implode(' ', $this->arguments)));
+        $result = $tr->translate(implode(' ', $this->arguments));
+        $originalLanguage = $tr->getLastDetectedSource();
+
+        $this->reply('Tulkojums tekstam no ' . $originalLanguage . ' valodas: ' . $result);
     }
 }

@@ -30,6 +30,9 @@ class Translate extends AbstractCommand
     {
         $tr = new GoogleTranslate('en');
         $tr->setSource();
-        $this->reply($tr->translate(implode(' ', $this->arguments)));
+        $result = $tr->translate(implode(' ', $this->arguments));
+        $originalLanguage = $tr->getLastDetectedSource();
+
+        $this->reply('Translated from ' . $originalLanguage . ': ' . $result);
     }
 }
