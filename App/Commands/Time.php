@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Classes\AbstractCommand;
+use App\Helpers\Curl;
 use App\Helpers\Env;
 use DateTime;
 use DateTimeZone;
@@ -30,21 +31,19 @@ class Time extends AbstractCommand
      */
     public function execute(): void
     {
-        $location = implode("_", $this->arguments);
-        $tz = "";
+        $url = 'http://api.positionstack.com/v1/forward?access_key=%s&query=%s&output=json&timezone_module=1';
+        $query = implode(" ", $this->arguments);
+        $url = sprintf($url, Env::Get('POSITIONSTACK_API_KEY'), $query);
 
-        foreach (DateTimeZone::listIdentifiers() as $identifier) {
-            if (str_contains($identifier, $location)) {
-                $tz = $identifier;
-                break;
-            }
+        $output = Curl::Get($url);
+        $result = json_decode($output);
+
+        if (isset($result->error) && count($result->data) < 1) {
+            $this->reply("An error occurred: " . $result->error->message);
+        } else {
+            var_dump($result);
+            $date = new DateTime("now", new DateTimeZone($result->data[0]->timezone_module->name));
+            $this->reply($date->format("Y-m-d H:i:s T"));
         }
-
-        if ($tz === "") {
-            $this->reply("Could not find " . implode(" ", $this->arguments) . "!");
-        }
-
-        $date = new DateTime("now", new DateTimeZone($tz));
-        $this->reply($date->format("Y-m-d H:i:s T"));
     }
 }

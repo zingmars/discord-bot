@@ -10,6 +10,7 @@ use App\Commands\FindIp;
 use App\Commands\FindPhone;
 use App\Commands\Help;
 use App\Commands\Lenny;
+use App\Commands\Locate;
 use App\Commands\LocateIp;
 use App\Commands\Ping;
 use App\Commands\ReallyFuckingLove;
@@ -46,6 +47,7 @@ class CommandHelper
         'translate' => Translate::class,
         'translatelv' => TranslateLV::class,
         'time' => Time::class,
+        'locate' => Locate::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -142,8 +144,14 @@ class CommandHelper
         Time::class => [
             'command' => 'time',
             'shortDescription' => 'Returns time in a location',
-            'longDescription' => 'Returns time in a given country or a city. Note that the location needs to have an entry in a TZ database, so smaller towns won\'t work. For those usage of the WolframAlpha command is recommended',
-            'syntax' => '[Location]',
+            'longDescription' => 'Returns time in a given country or a city. Note that the location needs to have an entry in a TZ database, so smaller towns won\'t work. For those usage of the WolframAlpha command is recommended.',
+            'syntax' => '[location]',
+        ],
+        Locate::class => [
+            'command' => 'locate',
+            'shortDescription' => 'Attempts to return basic information about a place',
+            'longDescription' => 'Looks up and tries to return some basic information about a given location.',
+            'syntax' => '[location]',
         ],
     ];
 
