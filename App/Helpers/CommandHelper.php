@@ -18,6 +18,7 @@ use App\Commands\Say;
 use App\Commands\Fact;
 use App\Commands\SpamGL;
 use App\Commands\SpamGLCount;
+use App\Commands\Time;
 use App\Commands\Translate;
 use App\Commands\TranslateLV;
 use App\Commands\Weather;
@@ -44,6 +45,7 @@ class CommandHelper
         'define' => Dictionary::class,
         'translate' => Translate::class,
         'translatelv' => TranslateLV::class,
+        'time' => Time::class,
 
         // These commands don't have help entries
         'rfl' => ReallyFuckingLove::class,
@@ -136,6 +138,12 @@ class CommandHelper
             'shortDescription' => 'Translate a query',
             'longDescription' => 'Translates text using Google Translate. Might not be 100% accurate, but what can you do. Might not even work because Google has banned my IP. Oops! Use !translatelv to translate to Latvian.',
             'syntax' => '[query]',
+        ],
+        Time::class => [
+            'command' => 'time',
+            'shortDescription' => 'Returns time in a location',
+            'longDescription' => 'Returns time in a given country or a city. Note that the location needs to have an entry in a TZ database, so smaller towns won\'t work. For those usage of the WolframAlpha command is recommended',
+            'syntax' => '[Location]',
         ],
     ];
 

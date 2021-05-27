@@ -53,13 +53,15 @@ To run:
 * In the project's directory run `docker-compose build` (don't forget to initialise submodules if you want cleverbot). Alternatively you can try `docker build -f Docker/Dockerfile .`. This will create a docker image. 
 * You can then run the image manually or use the same `docker-compose.yml` file if you want to run it (`docker-compose up`). Just be sure to specify an .env file and a Data directory as a volume if you're running it manually.
 
-
 ### Miscellaneous
 
 * You can add hardcoded replies in [App/Listeners/Message.php](./App/Listeners/Message.php).
 * To add new commands, create a class that extends AbstractCommand in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php). Just look at other commands for examples.
-* You can get OpenWeather API keys [here](https://home.openweathermap.org/api_keys) (account needed, free tier is available, although limited).
-* You can get WolframAlpha API keys [here](https://developer.wolframalpha.com/portal/myapps/).
-* You can get Shodan API keys [here](https://developer.shodan.io/);
-* SPAM_TARGET settings are for a joke, don't mind those.
+* You can get OpenWeather API keys (for <prefix>weather) [here](https://home.openweathermap.org/api_keys) (account needed, free tier is available, although limited).
+* You can get WolframAlpha API keys (for <prefix>wa) [here](https://developer.wolframalpha.com/portal/myapps/).
+* You can get Shodan API keys (for <prefix>locateip) [here](https://developer.shodan.io/).
+* You can get Google API keys (for <prefix>time) [here](https://developers.google.com/maps/documentation/timezone/get-api-key).
+* <prefix>FindPhone requires a OpenCNAM API key. Have fun getting one!
+* SPAM_TARGET settings are for a joke (<prefix>spamgl; <prefix>spamcount), don't mind those.
 * Logging is done to stdout (with the exception of the cleverbot plugin, you'll need to enable debug mode, and it will log to the [Log](./Log) directory). If you're using docker-compose, you can use `docker-compose logs` to track the logs.
+* The cleverbot and Google translate (<prefix>translate) commands don't use the official APIs, so take care to not abuse them too much or you risk getting banned.
