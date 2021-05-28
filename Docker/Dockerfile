@@ -1,6 +1,6 @@
 FROM php:8.0-alpine
 
-RUN apk add nodejs npm php8-opcache php8-mbstring php8-xml && rm -rf /var/cache/apk/*
+RUN apk add nodejs npm php8-opcache php8-mbstring php8-xml php8-pecl-event && rm -rf /var/cache/apk/*
 
 ADD . / bot/
 RUN rm -rf /bot/Docker /bot/vendor /bot/.env /bot/.git /bot/.idea /bot/.run /bot/docker-compose.yml /bot/.env.example /bot/.gitignore /bot/.gitmodules /bot/Lib/node* /bot/Data /bot/Log/* /bot/LICENSE.txt /bot/README.MD
