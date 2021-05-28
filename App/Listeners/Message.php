@@ -107,7 +107,7 @@ class Message
         }
 
         // Some prefixes (like !) might be spammed naturally by users. Ignore such cases (i.e. '!!!!!!!').
-        if ($content[1] === Env::get('COMMAND_PREFIX')) {
+        if (count($content) === 1 || $content[1] === Env::get('COMMAND_PREFIX')) {
             return;
         }
 
