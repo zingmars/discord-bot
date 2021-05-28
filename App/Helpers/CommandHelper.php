@@ -28,7 +28,7 @@ use JetBrains\PhpStorm\Pure;
 
 class CommandHelper
 {
-    private const COMMANDS = [
+    public const COMMANDS = [
         'ping' => Ping::class,
         '8ball' => EightBall::class,
         'say' => Say::class,
@@ -59,9 +59,9 @@ class CommandHelper
     public const COMMANDS_DESCRIPTIONS = [
         Help::class => [
             'command' => 'help',
-            'shortDescription' => 'Help',
+            'shortDescription' => 'Command list. Optionally add a command\'s name to see information about an individual command.',
             'longDescription' => 'List of commands.',
-            'syntax' => '',
+            'syntax' => '[command]',
         ],
         Ping::class => [
             'command' => 'ping',
@@ -77,50 +77,50 @@ class CommandHelper
         ],
         Fact::class => [
             'command' => 'fact',
-            'shortDescription' => 'Fact',
-            'longDescription' => 'Returns a random fact.',
+            'shortDescription' => 'Returns a fact.',
+            'longDescription' => 'Returns a random fact from randomfunfacts.com.',
             'syntax' => '',
         ],
         Weather::class => [
             'command' => 'weather',
-            'shortDescription' => 'Weather',
-            'longDescription' => 'Checks weather in a given location.',
+            'shortDescription' => 'Current weather.',
+            'longDescription' => 'Checks weather in a given location using openweathermap.org.',
             'syntax' => '[location]',
         ],
         Roll::class => [
             'command' => 'roll',
-            'shortDescription' => 'Roll',
-            'longDescription' => 'Rolls dice. Optionally the amount of dice and the amount of sides each dice has can be specified',
+            'shortDescription' => 'Roll a dice.',
+            'longDescription' => 'Rolls dice. Optionally the amount of dice and the amount of sides each dice has can be specified.',
             'syntax' => '[dice = 1] [sides = 6]',
         ],
         FindIp::class => [
             'command' => 'findip',
-            'shortDescription' => 'Find ip address',
+            'shortDescription' => 'Find ip address.',
             'longDescription' => 'Looks up a given ip address and returns information about it.',
             'syntax' => '[ip address]',
         ],
         LocateIp::class => [
             'command' => 'locateip',
-            'shortDescription' => 'Find ip address',
+            'shortDescription' => 'Find ip address using Shodan.',
             'longDescription' => 'Looks up a given ip address using Shodan. Data only available for IPs scanned by Shodan, so it might not be available your ip.',
             'syntax' => '[ip address]',
         ],
         FindPhone::class => [
             'command' => 'findphone',
-            'shortDescription' => 'Lookup phone number\'s caller id',
-            'longDescription' => 'Looks up a phone number to see if they have a caller id.',
+            'shortDescription' => 'Lookup phone number\'s caller id.',
+            'longDescription' => 'Looks up a phone number using OpenCnam to see if they have a caller id.',
             'syntax' => '[phone number]',
         ],
         ChristianInsult::class => [
             'command' => 'insult',
-            'shortDescription' => 'Insult someone',
-            'longDescription' => 'Insult someone in a very Christian manner.',
+            'shortDescription' => 'Insult someone.',
+            'longDescription' => 'Insult someone in a very Christian manner (Lutheran insults).',
             'syntax' => '[user tag]',
         ],
         DadJoke::class => [
             'command' => 'joke',
             'shortDescription' => 'Get a dad joke',
-            'longDescription' => 'Get a random (dad) joke.',
+            'longDescription' => 'Get a random (dad) joke from icanhazdadjoke.com.',
             'syntax' => '',
         ],
         WolframAlpha::class => [
@@ -131,26 +131,26 @@ class CommandHelper
         ],
         Dictionary::class => [
             'command' => 'define',
-            'shortDescription' => 'Define a word',
-            'longDescription' => 'Get a definition of a word. Language is optional if the word isn\'t in English. Note that returned results are in the same language as the word itself.',
+            'shortDescription' => 'Define a word.',
+            'longDescription' => 'Get a definition of a word. You can set the language if the word isn\'t in English. Note that returned results are in the same language as the word itself - this command does not translate.',
             'syntax' => '[word] [language=en_US|en_GB|hi|es|fr|ja|ru|de|it|ko|pt-BR|ar|tr]',
         ],
         Translate::class => [
             'command' => 'translate[lv]',
-            'shortDescription' => 'Translate a query',
-            'longDescription' => 'Translates text using Google Translate. Might not be 100% accurate, but what can you do. Might not even work because Google has banned my IP. Oops! Use !translatelv to translate to Latvian.',
+            'shortDescription' => 'Translate some text to English. add lv to the command to translate to Latvian.',
+            'longDescription' => 'Translate some text to English using Google Translate. add lv to the command to translate to Latvian. Not entirely reliable and should not be relied upon.',
             'syntax' => '[query]',
         ],
         Time::class => [
             'command' => 'time',
-            'shortDescription' => 'Returns time in a location',
-            'longDescription' => 'Returns time in a given country or a city.',
+            'shortDescription' => 'Returns time in a given location.',
+            'longDescription' => 'Returns time in a given country or a city using Positionstack.',
             'syntax' => '[location]',
         ],
         Locate::class => [
             'command' => 'locate',
             'shortDescription' => 'Attempts to return basic information about a place',
-            'longDescription' => 'Looks up and tries to return some basic information about a given location.',
+            'longDescription' => 'Looks up and tries to return some basic information about a given location using Positionstack.',
             'syntax' => '[location]',
         ],
     ];
