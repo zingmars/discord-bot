@@ -61,6 +61,7 @@ To run:
 
 ### Miscellaneous
 
+* If you have logging enabled in Docker, and you have user namespace isolation on, don't forget to chown and chmod the [Data](./Data) and [Log](./Log) folders.   
 * You can add hardcoded replies in [App/Listeners/Message.php](./App/Listeners/Message.php).
 * To add new commands, create a class that extends AbstractCommand in the [Commands](./App/Commands) folder, then add it to [CommandHelper](./App/Helpers/CommandHelper.php). Just look at other commands for examples.
 * You can get OpenWeather API keys (for <prefix>weather) [here](https://home.openweathermap.org/api_keys) (account needed, free tier is available, although limited).
