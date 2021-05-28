@@ -32,7 +32,7 @@ class Time extends AbstractCommand
     public function execute(): void
     {
         $url = 'http://api.positionstack.com/v1/forward?access_key=%s&query=%s&output=json&timezone_module=1';
-        $query = implode(" ", $this->arguments);
+        $query = urlencode(implode(" ", $this->arguments));
         $url = sprintf($url, Env::Get('POSITIONSTACK_API_KEY'), $query);
 
         $output = Curl::Get($url);
