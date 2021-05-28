@@ -2,16 +2,18 @@
 
 namespace App\Services;
 
-use App\Helpers\Env;
-use App\Helpers\Log;
+use Monolog\Logger;
 
 class CleverbotService
 {
+    private Logger $logger;
     private ?array $pipes;
     private $nodeProcess; // can't type hint because of https://github.com/php/php-src/pull/1631
 
-    public function __construct()
+    public function __construct(Logger $logger)
     {
+        $this->logger = $logger;
+
         // Look dude, the web API gets cucked so often I really can't be arsed to maintain this crap when there's someone
         // else who already does it. And he does it for free :)
         $descriptorSpec = array(
@@ -27,7 +29,7 @@ class CleverbotService
 
         // Testing
         //fwrite($this->pipes[0], "Hello");
-        //Log::console("Initialising cleverbot. Initial response:" . fgets($this->pipes[1]));
+        //$this->logger->info("Initialising cleverbot. Initial response:" . fgets($this->pipes[1]));
     }
 
     public function __destruct()
@@ -61,8 +63,8 @@ class CleverbotService
         // Remove the original bot mention from the string sent to Cleverbot.
         $content = trim(strstr($content," "));
 
-        $logMessage = '[%s] Processing cleverbot message: "%s"';
-        Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $content));
+        $logMessage = 'Processing cleverbot message: "%s"';
+        $this->logger->info(sprintf($logMessage, $content));
 
         return $this->makeRequest($content);
     }

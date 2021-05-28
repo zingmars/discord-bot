@@ -5,16 +5,17 @@ namespace App\Listeners;
 use App\Classes\Command;
 use App\Helpers\CommandHelper;
 use App\Helpers\Env;
-use App\Helpers\Log;
 use App\Services\CleverbotService;
 use Discord\Discord;
 use Discord\Parts\Channel\Message as DiscordMessage;
 use Exception;
+use Monolog\Logger;
 
 class Message
 {
     private DiscordMessage $message;
     private Discord $discord;
+    private Logger $logger;
     private CleverbotService $cleverbotService;
 
     /**
@@ -25,11 +26,13 @@ class Message
     public function __construct(Discord $discord, CleverbotService $cleverbotService, DiscordMessage $message)
     {
         $this->discord = $discord;
+        $this->logger = $discord->__get('options')['logger'];
         $this->message = $message;
         $this->cleverbotService = $cleverbotService;
 
-        $logMessage = '[%s] Received a message from %s#%s: %s';
-        Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $this->message->author->username, $this->message->author->discriminator, $message->content));
+
+        $logMessage = 'Received a message from %s#%s: %s';
+        $this->logger->info(sprintf($logMessage, $this->message->author->username, $this->message->author->discriminator, $message->content));
 
         // Don't handle private messages.
         if ($this->message->channel->is_private) return;
@@ -89,16 +92,16 @@ class Message
 
         $commandName = $arguments[0];
 
-        $logMessage = '[%s] Executing a command: %s (%s)';
+        $logMessage = 'Executing a command: %s (%s)';
         $commandClass = CommandHelper::getClassName($commandName);
 
         if (class_exists($commandClass)) {
-            $command = new Command($this->discord, $this->message, $arguments);
+            $command = new Command($this->discord, $this->message, $this->logger, $arguments);
             new $commandClass($command);
         } else {
             $this->message->react('❌');
         }
 
-        Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $commandName, implode(' ', $arguments)));
+        $this->logger->info(sprintf($logMessage, $commandName, implode(' ', $arguments)));
     }
 }
