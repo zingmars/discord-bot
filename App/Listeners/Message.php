@@ -53,55 +53,27 @@ class Message
      */
     private function handleCommand(): void
     {
-        $content = $this->message->content;
-
-        if (strlen($content) === 0) {
+        if (strlen($this->message->content) === 0) {
             return;
-        }
-
-        // Memes
-        if (str_contains($this->message->content, 'https://cdn.discordapp.com/attachments/810884195516809238/829332905426812938/c82ef193241b16732d724ddac309698d.mp4')) {
-            $this->message->reply('debils esi?');
         }
 
         // Cleverbot (only if enabled and bot was directly mentioned)
         if (Env::get('ENABLE_CLEVERBOT') === "True") {
-            preg_match('/^<@!?(.*?)>/s', $content, $match);
-            if (count($match) > 0 && $match[1] === Env::get('BOT_USER_ID')) {
-                // Resolve mentions to actual usernames to avoid feeding junk data to cleverbot
-                if (count($this->message->mentions) > 1) {
-                    foreach ($this->message->mentions as $mention) {
-                        $content = str_replace('<@!'.$mention->id.'>', $mention->username, $content);
-                    }
+            if ($this->message->mentions->count() > 0 && $this->message->mentions->first()->id === Env::get('BOT_USER_ID')) {
+                $response = $this->cleverbotService->handle($this->message);
+                if ($response !== null || $response !== false) {
+                    $this->message->reply($response);
+                } else {
+                    $this->message->react('😭');
                 }
-
-                // Resolve custom emoji to their values in order to avoid feeding Cleverbot Discord-specific syntax
-                preg_match_all('/<:\w+:[0-9]+>/', $content, $emojis);
-                if (count($emojis) > 0) {
-                    foreach ($emojis as $emoji) {
-                        preg_match('/<:(.*?):\d*?>/', $emoji[0], $val);
-                        $content = str_replace($emoji, $val[1], $content);
-                    }
-                }
-
-                // Remove the original bot mention from the string sent to Cleverbot.
-                $message = trim(strstr($content," "));
-
-                $logMessage = "[%s] Processing cleverbot message: %s";
-                Log::console(sprintf($logMessage, date("Y-m-d H:i:s T"), $content));
-
-                $response = $this->cleverbotService->makeRequest($message);
-                if ($response !== null) {
-                    if ($response === false) {
-                        $this->message->react('😭');
-                    } else {
-                        $this->message->reply($response);
-                    }
-                }
+                return;
             }
         }
 
         // Handle commands normally
+        $content = $this->message->content;
+
+        // Drop the message if there's no command prefix
         if ($content[0] !== Env::get('COMMAND_PREFIX')) {
             return;
         }
@@ -111,6 +83,7 @@ class Message
             return;
         }
 
+        // Handle the command
         $content = substr($content, 1);
         $arguments = explode(' ', $content);
 
