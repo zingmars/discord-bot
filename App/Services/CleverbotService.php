@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\Env;
 use Monolog\Logger;
 
 class CleverbotService
@@ -61,7 +62,16 @@ class CleverbotService
         }
 
         // Remove the original bot mention from the string sent to Cleverbot.
-        $content = trim(strstr($content," "));
+        // Only do it if the message actually contains the bot ID (should be the first mention).
+        // It might not be present if the message is a reply.
+        if (str_contains($content, Env::get('BOT_USER_ID'))) {
+            $content = strstr($content," ");
+        }
+
+        // Trim the message.
+        // We do this after the previous steps just in case we accidentally introduced some whitespace
+        // when clearing up the message.
+        $content = trim($content);
 
         $logMessage = 'Processing cleverbot message: "%s"';
         $this->logger->info(sprintf($logMessage, $content));
@@ -71,6 +81,8 @@ class CleverbotService
 
     public function makeRequest($message): false|string
     {
+        //TODO:04-06-2021:Ingmars Melkis: Add a check to make sure the pipes are still active.
+        // If the js script dies for whatever reason the bot will just freeze (it won't even crash).
         if (fwrite($this->pipes[0], $message)) {
             return fgets($this->pipes[1]);
         }

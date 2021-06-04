@@ -60,8 +60,9 @@ class Message
             return;
         }
 
-        // Cleverbot (only if enabled and bot was directly mentioned)
+        // Cleverbot (only if enabled and bot was directly mentioned or replied to)
         if (Env::get('ENABLE_CLEVERBOT') === "True") {
+            // Change this to check message contents for the bot id if you want to disable cleverbot on replies
             if ($this->message->mentions->count() > 0 && $this->message->mentions->first()->id === Env::get('BOT_USER_ID')) {
                 $response = $this->cleverbotService->handle($this->message);
                 if ($response !== null || $response !== false) {
