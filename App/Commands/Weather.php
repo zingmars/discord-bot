@@ -54,7 +54,7 @@ class Weather extends AbstractCommand
         $description = $result->weather[0]->main;
 
         // Implementation shamelessly stolen off Taiiwobot who then stole it from god knows where.
-        if ($temp < 6) {
+        if ($temp <= 6.0) {
             $remark = "IT'S FUCKING COLD";
             $flavours = [
                 "Where's the cat? Oh shit. Fluffy's frozen.",
@@ -88,7 +88,7 @@ class Weather extends AbstractCommand
                 "I'm defrosting inside of my freezer.",
                 "It's time for a vacation.",
                 "It's bone chilling cold out. Sorry ladies."];
-        } else if ($temp < 20) {
+        } else if ($temp <= 20.0) {
             $remark = "IT'S FUCKING...ALRIGHT";
             $flavours = [
                 "Might as well rain, I'm not going out in that.",
@@ -118,7 +118,7 @@ class Weather extends AbstractCommand
                 "Slap me around and call me Sally. It'd be an improvement.",
                 "Today is the perfect size, really honey.",
                 "Maybe Jersey Shore is on tonight."];
-        } else if ($temp > 20.3 || $temp < 20.6) {
+        } else if ($temp >= 20.3 && $temp <= 20.6) {
             // 20.5 = 69F. We approximate.
             $remark = "IT'S FUCKING SEXY TIME (~69F)";
             $flavours = [
@@ -127,7 +127,7 @@ class Weather extends AbstractCommand
                 "If you are given two contradictory orders, obey them both.",
                 "a good fuckin' time! ;)",
                 "What's the square root of 69? Eight something."];
-        } else if ($temp < 27) {
+        } else if ($temp <= 27.0) {
             $remark = "IT'S FUCKING NICE";
             $flavours = [
                 "I made today breakfast in bed.", "FUCKING SWEET",
